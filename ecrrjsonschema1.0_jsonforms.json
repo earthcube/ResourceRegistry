@@ -1565,8 +1565,8 @@
                 },
                 "@type": {
                     "type": "string",
-                    "const": "sdo:PropertyValue",
-                    "default": "sdo:PropertyValue"
+                    "const": "PropertyValue",
+                    "default": "PropertyValue"
                 },
                 "propertyID": {
                     "type": "string",
