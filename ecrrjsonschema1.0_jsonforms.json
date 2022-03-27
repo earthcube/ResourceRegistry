@@ -79,12 +79,6 @@
         "publisher": {
             "$ref": "#/definitions/agent_type"
         },
-        "developer": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/agent_type"
-            }
-        },
         "stewardship": {
             "$ref": "#/definitions/agent_type"
         },
