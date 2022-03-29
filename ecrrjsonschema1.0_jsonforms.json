@@ -71,11 +71,13 @@
             "type": "array",
             "items": {"$ref": "#/definitions/agent_type"}
         },
+
         "developer": {
             "description": "developer is not a defined field in the original google forms data entry; legacy resource registration will not have this role",
             "type": "array",
             "items": {"$ref": "#/definitions/agent_type"}
         },
+
         "stewardship": {
             "description": "for schema.org, this gets moved to additiional property array, with propertyID ecrro:ECRRO_0000218",
             "$ref": "#/definitions/agent_type"
@@ -1484,8 +1486,8 @@
                 "value": {"type": "string"},
                 "@type": {
                     "type": "string",
-                    "const": "sdo:PropertyValue",
-                    "default": "sdo:PropertyValue"
+                    "const": "PropertyValue",
+                    "default": "PropertyValue"
                 },
                 "propertyID": {
                     "type": "string",
