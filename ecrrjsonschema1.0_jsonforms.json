@@ -1,5 +1,4 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "EarthCube Resource Registry (ECRR) Resource Description",
     "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to allresource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface, ",
@@ -28,20 +27,25 @@
             "title": "alternate name for resource",
             "description": "other names, abbreviations, languages, by which the resource might be known.  If names are provided in a non-English language, please suffix a language identifier using the '@' delimiter and an ISO-639-1 two letter language code, e.g. Forme universelle binaire de l'OMM@fr. Separate entries with a pipe ('|') character",
             "type": "array",
-            "items": {"type": "string"}
+            "items": {
+                "type": "string"
+            }
         },
         "subjectOf": {
             "title": "URL to User-Readable Page",
-            "description": "Name and url for one or more web pages or other web accessible document about the resource; require at least one URL",
+            "description": "Name and url for one or more web pages or other web accessible document about the resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "identifier": {
             "title": "External Identifier",
             "description": "Globally unique identifier for the described resource; could be single value or array of strings for multiple identifiers",
             "type": "array",
-            "items": {"type": "string"},
-            "$comment": " change type, don't use {'$ref': '#/definitions/identifier_type'} for now, legacy data doesn't have identifier type, and i think there are lots of kinds of identifiers; as long as they are a URI, the scheme is indicated by the identifier prefix"
+            "items": {
+                "$ref": "#/definitions/identifier_type"
+            }
         },
         "description": {
             "type": "string",
@@ -54,37 +58,41 @@
         "creator": {
             "title": "one or more person or organization entities responsible for the intellectual content of the resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/agent_type"}
+            "items": {
+                "$ref": "#/definitions/agent_type"
+            }
         },
         "editor": {
             "title": "one or more person or organization entities responsible editing the resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/agent_type"}
+            "items": {
+                "$ref": "#/definitions/agent_type"
+            }
         },
         "contributor": {
             "title": "one or more person or organization entities who contributed to creation of the resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/agent_type"}
+            "items": {
+                "$ref": "#/definitions/agent_type"
+            }
         },
         "publisher": {
-            "title": "one or more person or organization entities who contributed to creation of the resource",
-            "type": "array",
-            "items": {"$ref": "#/definitions/agent_type"}
+            "$ref": "#/definitions/agent_type"
         },
 
         "developer": {
-            "description": "developer is not a defined field in the original google forms data entry; legacy resource registration will not have this role",
             "type": "array",
-            "items": {"$ref": "#/definitions/agent_type"}
+            "items": {
+                "$ref": "#/definitions/agent_type"
+            }
         },
 
         "stewardship": {
-            "description": "for schema.org, this gets moved to additiional property array, with propertyID ecrro:ECRRO_0000218",
             "$ref": "#/definitions/agent_type"
         },
         "ecrro:ECRRO_0000600": {
             "type": "object",
-            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters. For schema.org, this gets moved to additiional property array",
+            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
             "properties": {
                 "@type": {
                     "type": "string",
@@ -100,12 +108,17 @@
                     "type": "string",
                     "default": "primary publication"
                 },
-                "value": {"type": "string"}
+                "value": {
+                    "type": "string"
+                }
             }
         },
         "keywords": {
-            "type": "string",
-            "description": "comma-delimited list of keywords; schema.org does not implement as an array."
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "list of keywords"
         },
         "license": {
             "title": "legal statement of conditions for use and access",
@@ -264,11 +277,6 @@
                             "@type": "CreativeWork",
                             "url": "http://cor.esipfed.org/ont/SWL_0000019"
                         }
-                    },
-                    {
-                        "title": "generic object",
-                        "description": "need to handle legacy data that doesn't have identifier; the google form has an 'other' option that could be anything",
-                        "type": "object"
                     }
                 ]
             }
@@ -282,8 +290,12 @@
             "type": "array",
             "items": {
                 "anyOf": [
-                    {"$ref": "#/definitions/funding_agent_type"},
-                    {"$ref": "#/definitions/grant_type"}
+                    {
+                        "$ref": "#/definitions/funding_agent_type"
+                    },
+                    {
+                        "$ref": "#/definitions/grant_type"
+                    }
                 ]
             }
         },
@@ -291,7 +303,9 @@
             "title": "Intended Audience/Target User",
             "description": "terms from controlled vocabulary to identify the kinds of users who are the target of the described resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/audience_type"}
+            "items": {
+                "$ref": "#/definitions/audience_type"
+            }
         },
         "about": {
             "title": "Science Domain",
@@ -1090,8 +1104,12 @@
                         "default": "Thing",
                         "const": "Thing"
                     },
-                    "name": {"type": "string"},
-                    "identifier": {"type": "string"}
+                    "name": {
+                        "type": "string"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -1102,151 +1120,167 @@
             "items": {
                 "type": "object",
                 "properties": {
-                    "@type": {"type": "string"},
-                    "name": {"type": "string"},
-                    "url": {"type": "string"}
+                    "@type": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
                 }
             }
         },
         "mainEntity": {
             "title": "Type of Resource",
-            "type": "array",
             "description": "url is URI for ECRR resource type; name is ECRR resource type name. This should include the ECRR URI; it is used to validate resource specific properties",
-            "items": {
-                "type": "object",
-                "oneOf": [
-                    {
-                        "title": "Bundled Object",
-                        "const": {
-                            "name": "Bundled Object",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
-                        }
-                    },
-                    {
-                        "title": "Catalog/Registry",
-                        "const": {
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000212",
-                            "name": "Catalog/Registry"
-                        }
-                    },
-                    {
-                        "title": "Interchange file format",
-                        "const": {
-                            "name": "Interchange file format",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208"
-                        }
-                    },
-                    {
-                        "title": "Interface/API",
-                        "const": {
-                            "name": "Interface/API",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
-                        }
-                    },
-                    {
-                        "title": "Platform",
-                        "const": {
-                            "name": "Platform",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000211"
-                        }
-                    },
-                    {
-                        "title": "Repository",
-                        "const": {
-                            "name": "Repository",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
-                        }
-                    },
-                    {
-                        "title": "Semantic Resource",
-                        "const": {
-                            "name": "Semantic Resource",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
-                        }
-                    },
-                    {
-                        "title": "Service Instance",
-                        "const": {
-                            "name": "Service Instance",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
-                        }
-                    },
-                    {
-                        "title": "Software",
-                        "const": {
-                            "name": "Software",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
-                        }
-                    },
-                    {
-                        "title": "Specification",
-                        "const": {
-                            "name": "Specification",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
-                        }
-                    },
-                    {
-                        "title": "Use Case",
-                        "const": {
-                            "name": "Use Case",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
-                        }
+            "oneOf": [
+                {
+                    "title": "Bundled Object",
+                    "const": {
+                        "name": "Bundled Object",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
                     }
-                ]
-            }
+                },
+                {
+                    "title": "Catalog/Registry",
+                    "const": {
+                        "name": "Catalog/Registry",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000212"
+                    }
+                },
+                {
+                    "title": "Interchange file format",
+                    "const": {
+                        "name": "Interchange file format",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208"
+                    }
+                },
+                {
+                    "title": "Interface/API",
+                    "const": {
+                        "name": "Interface/API",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+                    }
+                },
+                {
+                    "title": "Platform",
+                    "const": {
+                        "name": "Platform",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000211"
+                    }
+                },
+                {
+                    "title": "Repository",
+                    "const": {
+                        "name": "Repository",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
+                    }
+                },
+                {
+                    "title": "Semantic Resource",
+                    "const": {
+                        "name": "Semantic Resource",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
+                    }
+                },
+                {
+                    "title": "Service Instance",
+                    "const": {
+                        "name": "Service Instance",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
+                    }
+                },
+                {
+                    "title": "Software",
+                    "const": {
+                        "name": "Software",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
+                    }
+                },
+                {
+                    "title": "Specification",
+                    "const": {
+                        "name": "Specification",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                    }
+                },
+                {
+                    "title": "Use Case",
+                    "const": {
+                        "name": "Use Case",
+                        "@type": "CreativeWork",
+                        "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
+                    }
+                }
+            ]
         },
         "encodingFormat": {
             "title": "Representation Format or base format for a profile specification",
             "description": "format pattern is a registered MIME type prefix for the base format, and an application specific extension (after a ';' delimiter.  Values should be from the register at https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv ",
             "type": "array",
-            "items": {"type": "string"}
+            "items": {
+                "type": "string"
+            }
         },
         "isBasedOn": {
             "title": "Semantic Resources it Uses",
             "description": "references to Semantic Resources used by the described resource",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "dct:conformsTo": {
             "title": "Conforms to",
             "description": "references to specifications that the described resource is in conformance with",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "eccro:ECRRO_0000501": {
             "title": "profile of",
-            "description": "Links to base specifications that a specification resource profiles. Only applicable if resource type is specification. For schema.org, this gets moved to additional property array",
+            "description": "Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "ecrro:ECRRO_0000502": {
             "title": "Communication Protocol(s)",
-            "description": "communication protocol(s) used. Use ECRR controlled vocabulary. For schema.org, this gets moved to additional property array",
+            "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
             "type": "array",
-            "items": {"$ref": "#/definitions/definedTerm_type"}
+            "items": {
+                "$ref": "#/definitions/definedTerm_type"
+            }
         },
         "applicationCategory": {
             "title": "Application function and subfunction",
             "description": "strings use special syntac like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)",
             "type": "array",
-            "items": {"type": "string"}
+            "items": {
+                "type": "string"
+            }
         },
         "runtimePlatform": {
             "title": "runtime platform",
             "description": "runtime environments for the application, uses controlled vocabulary http://cor.esipfed.org/ont/earthcube/RTE. content is crude at this point, string entries in array with platform name and URI; should be DefinedTerm",
             "type": "array",
-            "items": {"type": "string"}
+            "items": {
+                "type": "string"
+            }
         },
         "programmingLanguage": {
             "title": "Programming language",
@@ -1260,8 +1294,12 @@
                         "default": "ComputerLanguage",
                         "const": "ComputerLanguage"
                     },
-                    "name": {"type": "string"},
-                    "identifier": {"type": "string"}
+                    "name": {
+                        "type": "string"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -1269,61 +1307,89 @@
             "title": "Supporting input and output data formats",
             "description": "critical bit for linking data and software; the input encodingFormat is used to match to the distribution encodingFormat for a dataset",
             "type": "array",
-            "items": {"$ref": "#/definitions/supportingData_type"}
+            "items": {
+                "$ref": "#/definitions/supportingData_type"
+            }
         },
         "codeRepository": {
             "title": "Code Repository",
-            "description": "URL location for repository in which code for an application or semantic resource is managed; should use schema:LinkRole instead of CreativeWork; schema:codeRepository expects a URL.",
+            "description": "name and URL location for repository in which code for an application or semantic resource is managed",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "installURL": {
             "title": "Software Install URL",
             "description": "URL that locates an installer package or instructions for installing software for use in a local environment",
             "type": "array",
-            "items": {"$ref": "#/definitions/creativeWork_type"}
+            "items": {
+                "$ref": "#/definitions/creativeWork_type"
+            }
         },
         "potentialAction": {
             "title": "Direct invocation of App on the web",
             "description": "use schema.org Action to document url or url template and parameters to invoke the application through a web accessible location. At this point, schema is set up for online one action-- an HTTP Get that invokes the web application. The url template can have only one paramter 'contentURL' that will be the contentURL from a distribution for a dataset that has an encoding format matchign the supportingData input for this application.",
             "type": "array",
-            "items": {"$ref": "#/definitions/action_type"}
+            "items": {
+                "$ref": "#/definitions/action_type"
+            }
         },
         "url": {
-            "title": "URL to access the resource.",
-            "description": "The recommended content is a link to a landing page with a description of the resource and other links to access it. Other important URLs have specific properties in this schema and should be populated there, e.g. subjectOf, installURL, codeRepository, service endpoint. For web applications, the url to invoke the app should be in potentialAction/Action/target/EntryPoint/urlTemplate. The name in the DefinedTerm here should be a label for the url, which is populated in the identifier.",
-            "type": "string"
+            "title": "Service endpoint base URL",
+            "description": "",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "@type": {
+                        "type": "string",
+                        "default": "DefinedTerm",
+                        "const": "DefinedTerm"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "identifier": {
+                        "type": "string"
+                    }
+                }
+            }
         },
         "additionalProperty": {
             "type": "array",
             "title": "Other Properties",
-            "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty. These properties are included in the root entity for compatibility with the JSON forms tools.",
-            "items": {"$ref": "#/definitions/additionalProperty_type"}
+            "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty",
+            "items": {
+                "$ref": "#/definitions/additionalProperty_type"
+            }
         },
         "ecrro:ECRRO_0001301": {
-            "description": "ECRR property, gets implemented as additionalProperty for schema.org",
             "$ref": "#/definitions/metadataCreatorType"
         },
         "dc:BibliographicCitation": {
             "title": "Bibliographic Citation",
-            "description": "ECRR property, gets implemented as additionalProperty for schema.org",
             "$ref": "#/definitions/citationType"
         },
         "ecrro:ECRRO_0000138": {
             "title": "Maturity",
             "type": "object",
-            "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU.  ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
             "properties": {
                 "value": {
                     "type": "object",
                     "properties": {
-                        "name": {"type": "string"},
+                        "name": {
+                            "type": "string"
+                        },
                         "@type": {
                             "type": "string",
                             "default": "DefinedTerm",
                             "const": "DefinedTerm"
                         },
-                        "identifier": {"type": "string"}
+                        "identifier": {
+                            "type": "string"
+                        }
                     },
                     "required": [
                         "identifier",
@@ -1343,13 +1409,14 @@
                 },
                 "name": {
                     "type": "string",
-                    "default": "has maturity state"
+                    "default": "has maturity state",
+                    "readonly": true
                 }
             }
         },
         "ecrro:ECRRO_0000219": {
             "type": "object",
-            "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT. ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
             "properties": {
                 "name": {
                     "type": "string",
@@ -1368,13 +1435,17 @@
                 "value": {
                     "type": "object",
                     "properties": {
-                        "name": {"type": "string"},
+                        "name": {
+                            "type": "string"
+                        },
                         "@type": {
                             "type": "string",
                             "default": "DefinedTerm",
                             "const": "DefinedTerm"
                         },
-                        "identifier": {"type": "string"}
+                        "identifier": {
+                            "type": "string"
+                        }
                     },
                     "required": [
                         "identifier",
@@ -1386,7 +1457,7 @@
         },
         "ecrro:ECRRO_0000218": {
             "type": "object",
-            "description": "stewardship: name of person or organization responsible for maintenance of the resource. ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "stewardship: name of person or organization responsible for maintenance of the resource",
             "properties": {
                 "@type": {
                     "type": "string",
@@ -1405,15 +1476,19 @@
                 },
                 "value": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/agent_type"}
+                    "items": {
+                        "$ref": "#/definitions/agent_type"
+                    }
                 }
             }
         },
         "dependencies": {
             "type": "object",
-            "description": "dependencies and their url. ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "dependencies and their url",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "const": "PropertyValue"
@@ -1424,14 +1499,16 @@
                 },
                 "value": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/creativeWork_type"}
+                    "items": {
+                        "$ref": "#/definitions/creativeWork_type"
+                    }
                 }
             }
         },
         "ecrro:ECRRO_0000017": {
             "type": "object",
             "title": "Current Usage Level",
-            "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA. ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
             "properties": {
                 "name": {
                     "type": "string",
@@ -1448,12 +1525,14 @@
                     "default": "ecrro:ECRRO_0000017",
                     "const": "ecrro:ECRRO_0000017"
                 },
-                "value": {"$ref": "#/definitions/definedTerm_type"}
+                "value": {
+                    "$ref": "#/definitions/definedTerm_type"
+                }
             }
         },
         "ecrro:ECRRO_0000503": {
             "type": "object",
-            "description": "Interface specification. ECRR property, gets implemented as additionalProperty for schema.org",
+            "description": "Interface specification",
             "properties": {
                 "@type": {
                     "type": "string",
@@ -1465,10 +1544,14 @@
                     "default": "ecrro:ECRRO_0000503",
                     "const": "ecrro:ECRRO_0000503"
                 },
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "value": {
                     "type": "array",
-                    "items": {"$ref": "#/definitions/creativeWork_type"}
+                    "items": {
+                        "$ref": "#/definitions/creativeWork_type"
+                    }
                 }
             }
         }
@@ -1477,13 +1560,17 @@
         "name",
         "description",
         "license",
+        "url",
+        "datePublished",
         "keywords"
     ],
     "definitions": {
         "identifier_type": {
             "type": "object",
             "properties": {
-                "value": {"type": "string"},
+                "value": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "const": "PropertyValue",
@@ -1513,7 +1600,9 @@
             "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "enum": [
@@ -1522,7 +1611,9 @@
                     ],
                     "default": "Person"
                 },
-                "identifier": {"type": "string"}
+                "identifier": {
+                    "type": "string"
+                }
             },
             "required": [
                 "@type",
@@ -1534,14 +1625,18 @@
             "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "enum": [
                         "Person",
                         "Organization"
                     ]
                 },
-                "identifier": {"type": "string"}
+                "identifier": {
+                    "type": "string"
+                }
             },
             "required": [
                 "@type",
@@ -1553,13 +1648,17 @@
             "title": "Grant",
             "description": "a Grant instrument",
             "properties": {
-                "identifier": {"type": "string"},
+                "identifier": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "Grant",
                     "const": "Grant"
                 },
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "sponsor": {
                     "type": "object",
                     "description": "agency that provided and adminsters the grant funding",
@@ -1569,7 +1668,9 @@
                             "default": "FundingAgency",
                             "const": "FundingAgency"
                         },
-                        "name": {"type": "string"}
+                        "name": {
+                            "type": "string"
+                        }
                     }
                 }
             }
@@ -1577,13 +1678,17 @@
         "audience_type": {
             "type": "object",
             "properties": {
-                "audienceType": {"type": "string"},
+                "audienceType": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "Audience",
                     "const": "Audience"
                 },
-                "identifier": {"type": "string"}
+                "identifier": {
+                    "type": "string"
+                }
             },
             "required": [
                 "@type",
@@ -1592,39 +1697,50 @@
         },
         "creativeWork_type": {
             "type": "object",
-            "description": "this is a shell used mostly for labeled links to other resources, but any schema.org CreativeWork property could be included.",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "CreativeWork",
                     "const": "CreativeWork"
                 },
-                "url": {"type": "string"}
+                "url": {
+                    "type": "string"
+                }
             }
         },
         "resourceTypes_type": {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "CreativeWork",
                     "const": "CreativeWork"
                 },
-                "url": {"type": "string"}
+                "url": {
+                    "type": "string"
+                }
             }
         },
         "definedTerm_type": {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "DefinedTerm",
                     "const": "DefinedTerm"
                 },
-                "identifier": {"type": "string"}
+                "identifier": {
+                    "type": "string"
+                }
             },
             "required": [
                 "identifier",
@@ -1635,7 +1751,9 @@
         "supportingData_type": {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "DataFeed",
@@ -1653,7 +1771,9 @@
                     "title": "file format and profile for input or output data to/from the application (consistent with value of 'positition' element)",
                     "description": "mime type with 'type' or 'application' extension that indicates specific application or profile compatibility of file content; values should come from https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv",
                     "type": "array",
-                    "items": {"type": "string"}
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -1682,8 +1802,7 @@
                             "default": "Open software on the web"
                         },
                         "urlTemplate": {
-                            "type": "string",
-                            "description": "if a dataset URL can be passed in the URL as a parameter, indicate with the parameter {contentURL}"
+                            "type": "string"
                         },
                         "httpMethod": {
                             "title": "HTTP Method",
@@ -1711,7 +1830,9 @@
         "citationType": {
             "type": "object",
             "properties": {
-                "name": {"type": "string"},
+                "name": {
+                    "type": "string"
+                },
                 "@type": {
                     "type": "string",
                     "default": "PropertyValue",
@@ -1722,12 +1843,14 @@
                     "default": "dc:BibliographicCitation",
                     "const": "dc:BibliographicCitation"
                 },
-                "value": {"type": "string"}
+                "value": {
+                    "type": "string"
+                }
             }
         },
         "metadataCreatorType": {
             "type": "object",
-            "description": "metadata contributor information. This gets moved to additionalProperties for schema.org serialization",
+            "description": "metadata contributor information",
             "properties": {
                 "@type": {
                     "type": "string",
@@ -1764,11 +1887,17 @@
                                     "default": "Person",
                                     "const": "Person"
                                 },
-                                "name": {"type": "string"},
-                                "identifier": {"type": "string"}
+                                "name": {
+                                    "type": "string"
+                                },
+                                "identifier": {
+                                    "type": "string"
+                                }
                             }
                         },
-                        "datePublished": {"type": "string"}
+                        "datePublished": {
+                            "type": "string"
+                        }
                     }
                 }
             }
@@ -1778,7 +1907,6 @@
                 {
                     "$anchor": "additionalProperty0",
                     "type": "object",
-                    "description": "recommended citation for the resource",
                     "properties": {
                         "@type": {
                             "type": "string",
@@ -1791,10 +1919,11 @@
                             "const": "dc:BibliographicCitation"
                         },
                         "name": {
-                            "type": "string",
-                            "default": "recommended citation for this resource"
+                            "type": "string"
                         },
-                        "value": {"type": "string"}
+                        "value": {
+                            "type": "string"
+                        }
                     }
                 },
                 {
@@ -1813,12 +1942,13 @@
                             "const": "ecrro:ECRRO_0000503"
                         },
                         "name": {
-                            "type": "string",
-                            "default": "Interface specification"
+                            "type": "string"
                         },
                         "value": {
                             "type": "array",
-                            "items": {"$ref": "#/definitions/creativeWork_type"}
+                            "items": {
+                                "$ref": "#/definitions/creativeWork_type"
+                            }
                         }
                     }
                 },
@@ -1838,12 +1968,13 @@
                             "const": "http://purl.obolibrary.org/obo/RO_0002502"
                         },
                         "name": {
-                            "type": "string",
-                            "default": "dependencies"
+                            "type": "string"
                         },
                         "value": {
                             "type": "array",
-                            "items": {"$ref": "#/definitions/creativeWork_type"}
+                            "items": {
+                                "$ref": "#/definitions/creativeWork_type"
+                            }
                         }
                     }
                 },
@@ -1866,7 +1997,9 @@
                             "type": "string",
                             "default": "has maturity state"
                         },
-                        "value": {"$ref": "#/definitions/definedTerm_type"}
+                        "value": {
+                            "$ref": "#/definitions/definedTerm_type"
+                        }
                     }
                 },
                 {
@@ -1888,7 +2021,9 @@
                             "type": "string",
                             "default": "expected lifetime"
                         },
-                        "value": {"$ref": "#/definitions/definedTerm_type"}
+                        "value": {
+                            "$ref": "#/definitions/definedTerm_type"
+                        }
                     }
                 },
                 {
@@ -1910,7 +2045,9 @@
                             "type": "string",
                             "default": "primary publication"
                         },
-                        "value": {"type": "string"}
+                        "value": {
+                            "type": "string"
+                        }
                     }
                 },
                 {
@@ -1934,7 +2071,9 @@
                         },
                         "value": {
                             "type": "array",
-                            "items": {"$ref": "#/definitions/agent_type"}
+                            "items": {
+                                "$ref": "#/definitions/agent_type"
+                            }
                         }
                     }
                 },
@@ -1957,7 +2096,9 @@
                             "type": "string",
                             "default": "Usage"
                         },
-                        "value": {"$ref": "#/definitions/definedTerm_type"}
+                        "value": {
+                            "$ref": "#/definitions/definedTerm_type"
+                        }
                     }
                 },
                 {
@@ -2000,62 +2141,18 @@
                                             "default": "Person",
                                             "const": "Person"
                                         },
-                                        "name": {"type": "string"},
-                                        "identifier": {"type": "string"}
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "identifier": {
+                                            "type": "string"
+                                        }
                                     }
                                 },
-                                "datePublished": {"type": "string"}
+                                "datePublished": {
+                                    "type": "string"
+                                }
                             }
-                        }
-                    }
-                },
-                {
-                    "$anchor": "additionalProperty9",
-                    "type": "object",
-                    "description": "Profile of.... Only applicable if resource type is specification.  Links to base specification for a profile.",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000501",
-                            "const": "ecrro:ECRRO_0000501"
-                        },
-                        "name": {
-                            "type": "string",
-                            "default": "Profile of"
-                        },
-                        "value": {
-                            "type": "array",
-                            "items": {"$ref": "#/definitions/definedTerm_type"}
-                        }
-                    }
-                },
-                {
-                    "$anchor": "additionalProperty10",
-                    "type": "object",
-                    "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000502",
-                            "const": "ecrro:ECRRO_0000502"
-                        },
-                        "name": {
-                            "type": "string",
-                            "default": "Communication Protocol(s)"
-                        },
-                        "value": {
-                            "type": "array",
-                            "items": {"$ref": "#/definitions/definedTerm_type"}
                         }
                     }
                 }
