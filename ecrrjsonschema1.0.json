@@ -560,6 +560,7 @@
             "anyOf": [
                 {
                     "type": "object",
+                    "description":"recommended citation for the resource",
                     "properties": {
                         "@type": {"const": "PropertyValue"},
                         "propertyID": {"const": "dc:BibliographicCitation"},
