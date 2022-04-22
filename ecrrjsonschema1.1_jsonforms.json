@@ -10,6 +10,7 @@
         },
         "@type": {
             "type": "array",
+            "description": "a schema.org Class that specifies the expected information content for the metadata record. For ECRR resources, expected values are {CreativeWork, SoftwareApplication, Product, WebAPI}. The type classes for a given resource description are selected based on the schema.org properties used to describe the resource.",
             "minItems": 1,
             "items": {
                 "enum": [
@@ -276,15 +277,10 @@
             "type": "string",
             "description": "string that identifies a particular version of the resource if it is not identified by the schema:identifier element"
         },
-        "funder": {
-            "description": "could be one funding agency or organization, or an array with items that can be agents (person or organization) or Grants; grants have a funding agency",
+        "funding": {
+            "description": "An array of grants. Grant has a funder -- person or organization that provides financial support, or a sponsor-- person or organization that provides financial or other kinds of support (office space, lab supplies",
             "type": "array",
-            "items": {
-                "anyOf": [
-                    {"$ref": "#/definitions/funding_agent_type"},
-                    {"$ref": "#/definitions/grant_type"}
-                ]
-            }
+            "items": {"$ref": "#/definitions/grant_type"}
         },
         "audience": {
             "title": "Intended Audience/Target User",
@@ -298,7 +294,7 @@
             "uniqueItems": true,
             "items": {
                 "oneOf": [
-                    {	
+                    {
                         "title": "Social Sciences",
                         "const": {
                             "name": "Social Sciences",
@@ -1126,7 +1122,7 @@
         "mainEntity": {
             "title": "Type of Resource",
             "type": "array",
-            "description": "url is URI for ECRR resource type; name is ECRR resource type name. This should include the ECRR URI; it is used to validate resource specific properties",
+            "description": "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or srt vocabulary (respectively) can be specified.",
             "items": {
                 "type": "object",
                 "oneOf": [
@@ -1524,10 +1520,12 @@
         }
     },
     "required": [
+        "@id",
+        "@type",
         "name",
         "description",
         "license",
-        "keywords"
+        "mainEntity"
     ],
     "definitions": {
         "identifier_type": {
@@ -1579,50 +1577,31 @@
                 "name"
             ]
         },
-        "funding_agent_type": {
-            "title": "Funder",
-            "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
-            "type": "object",
-            "properties": {
-                "name": {"type": "string"},
-                "@type": {
-                    "enum": [
-                        "Person",
-                        "Organization"
-                    ]
-                },
-                "identifier": {"type": "string"}
-            },
-            "required": [
-                "@type",
-                "name"
-            ]
-        },
         "grant_type": {
             "type": "object",
             "title": "Grant",
             "description": "a Grant instrument",
             "properties": {
-                "identifier": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "Grant",
                     "const": "Grant"
                 },
                 "name": {"type": "string"},
+                "identifier": {"type": "string"},
                 "sponsor": {
-                    "type": "object",
-                    "description": "agency that provided and adminsters the grant funding",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "FundingAgency",
-                            "const": "FundingAgency"
-                        },
-                        "name": {"type": "string"}
-                    }
+                    "description": "agent that provided financial or other kinds of support for development of resource",
+                    "$ref": "#/definitions/agent_type"
+                },
+                "funder": {
+                    "description": "agent that provided and adminsters financial support to create or maintain the resource",
+                    "$ref": "#/definitions/agent_type"
                 }
-            }
+            },
+            "required": [
+                "@type",
+                "name"
+            ]
         },
         "audience_type": {
             "type": "object",
