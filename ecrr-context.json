@@ -1,0 +1,22 @@
+{
+    "@context": {
+        "@vocab": "https://schema.org/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dct": "http://purl.org/dc/terms/",
+        "ecrro": "http://cor.esipfed.org/ont/earthcube/ECRRO_",
+        "ecrr": "https://n2t.net/ark:/23942/g2",
+        "dependsOn": "http://purl.obolibrary.org/obo/RO_0002502",
+        "resourceMaturity": "ecrro:0000138",
+        "serviceInstance": "ecrro:0000202",
+        "citation": "dct:bibliographicCitation",
+        "primaryPublication": "ecrro:0000600",
+        "usage": "ecrro:0000017",
+        "curatedBy": "ecrro:0000139",
+        "stewardship": "ecrro:0000218",
+        "expectedLifetime": "ecrro:0000219",
+        "profileOf": "ecrro:0000501",
+        "communicationProtocol": "ecrro:0000502",
+        "interfaceType": "ecrro:0000503",
+        "registrationMetadata": "ecrro:ECRRO_0001301"
+    }
+}
