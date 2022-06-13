@@ -7,7 +7,8 @@
         "@context": {
             "title": "JSON-LD context, value should be url for default ECRR context or an extension of that context.",
             "type": "string",
-            "default":"https://example.org/my/context.json"
+            "description": "context defines mapping from ecrr ontology properties to human-intelligible labels. github location is interim...",
+            "default": "https://raw.githubusercontent.com/earthcube/ResourceRegistry/main/ecrr-context.json"
         },
         "@id": {
             "type": "string",
@@ -83,14 +84,14 @@
             "type": "array",
             "items": {"$ref": "#/definitions/agent_type"}
         },
-        "stewardship": {
-            "description": "for schema.org, this gets moved to additiional property array, with propertyID ecrro:ECRRO_0000218",
+        "ec_stewardship": {
+            "description": "for schema.org, this gets moved to additiional property array, with propertyID ecrro:0000218",
             "$ref": "#/definitions/agent_type"
         },
-        "ecrro:ECRRO_0000600": {
+        "ec_primaryPublication": {
             "type": "array",
             "title": "primary publication",
-            "description": "A text citation to one or more publications about the resource; ",
+            "description": "A text citation to one or more publications about the resource; for schema.org, this gets moved to additiional property array, with propertyID ecrro:0000600",
             "items": {"type": "string"}
         },
         "keywords": {
@@ -1145,6 +1146,7 @@
                     },
                     {
                         "title": "Interface/API",
+                        "description": "use Specification (http://cor.esipfed.org/ont/earthcube/ECRRO_0000204) and API (http://cor.esipfed.org/ont/earthcube/SPKT_0000012) instead",
                         "const": {
                             "name": "Interface/API",
                             "@type": "CreativeWork",
@@ -1380,7 +1382,7 @@
                     },
                     {
                         "title": "API",
-                        "description": "subclass of SpecificationType",
+                        "description": "subclass of SpecificationType; specification of an interface to a software application",
                         "const": {
                             "name": "API",
                             "@type": "CreativeWork",
@@ -1470,7 +1472,7 @@
             "type": "array",
             "items": {"$ref": "#/definitions/creativeWork_type"}
         },
-        "installURL": {
+        "installUrl": {
             "title": "Software Install URL",
             "description": "URL that locates an installer package or instructions for installing software for use in a local environment",
             "type": "array",
@@ -1524,7 +1526,6 @@
         "identifier_type": {
             "type": "object",
             "properties": {
-                "value": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "const": "PropertyValue",
@@ -1532,21 +1533,15 @@
                 },
                 "propertyID": {
                     "type": "string",
-                    "enum": [
-                        "DATACITEURL",
-                        "PERLURL",
-                        "DOIURL"
-                    ],
-                    "default": "DOIURL"
+                    "description": "identifier for the identifier schema, e.g. DOI, ARK.  Get values from https://registry.identifiers.org/registry/ for interoperability"
                 },
-                "name": {
+                "value": {
                     "type": "string",
-                    "enum": [
-                        "DATACITE",
-                        "DOI",
-                        "OTHER"
-                    ],
-                    "default": "DOI"
+                    "description": "the identifier string. E.g. doi:10.5066/F7VX0DMQ"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "web-resolveable string for the identifier; host name part is location of a resolver that will return some representation for the given identifier value. E.g. https://doi.org/10.5066/F7VX0DMQ "
                 }
             }
         },
@@ -1650,10 +1645,22 @@
                     "default": "DefinedTerm",
                     "const": "DefinedTerm"
                 },
-                "identifier": {"type": "string"}
+                "identifier": {"$ref": "#/definitions/identifier_type"},
+                "inDefinedTermSet": {
+                    "type": "string",
+                    "description": "Identifier for the controlled vocabulary responsible for this keyword."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The canonical URL for the keyword. (Optional)"
+                },
+                "termCode": {
+                    "type": "string",
+                    "description": "A representative code for this keyword in the controlled vocabulary (Optional)"
+                }
             },
             "required": [
-                "identifier",
+                "inDefinedTermSet",
                 "@type",
                 "name"
             ]
@@ -1908,7 +1915,8 @@
                 },
                 {
                     "type": "object",
-                    "description": "Interface specification",
+                    "title": "Interface specification",
+                    "description": "property to specify the interface(s) implemented by a software application",
                     "properties": {
                         "@type": {
                             "type": "string",
