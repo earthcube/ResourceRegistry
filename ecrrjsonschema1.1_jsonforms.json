@@ -1,12 +1,13 @@
 {
-    "$comment": "Simplified for use in a forms application. Generated. Edits to schema  should happen in the the ECRR jsonforms application. https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_0.js",
+    "@context": "./ecrr-context.json",
+    "$comment": "Simplified for use in a forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_1.js) to show up in the forms UI. ",
     "type": "object",
     "title": "EarthCube Resource Registry (ECRR) Resource Description",
-    "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to allresource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface, ",
+    "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all resource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface. This schema Updated by S. Richard to align with existing ECRR metadata.",
     "properties": {
         "@id": {
             "type": "string",
-            "description": "globally identifier string for this metadata record, commonly a UUID with or without an HTTP prefix for web resolution"
+            "description": "globally identifier string for this metadata record (not the resource it describes!), commonly a UUID with or without an HTTP prefix for web resolution"
         },
         "@type": {
             "type": "array",
@@ -30,26 +31,20 @@
             "title": "alternate name for resource",
             "description": "other names, abbreviations, languages, by which the resource might be known.  If names are provided in a non-English language, please suffix a language identifier using the '@' delimiter and an ISO-639-1 two letter language code, e.g. Forme universelle binaire de l'OMM@fr. Separate entries with a pipe ('|') character",
             "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "items": {"type": "string"}
         },
         "subjectOf": {
             "title": "URL to User-Readable Page",
             "description": "Name and url for one or more web pages or other web accessible document about the resource; require at least one URL. Use creativeWork to get a labeled link. Future-- change to schema:LinkRole?",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
         "identifier": {
             "title": "External Identifier",
             "description": "Globally unique identifier for the described resource; could be single value or array of strings for multiple identifiers",
             "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "$comment": " change type, don't use {'$ref': '#/definitions/identifier_type'} for now, legacy data doesn't have identifier type, and there are lots of kinds of identifiers; as long as they are a URI, the scheme is indicated by the identifier prefix"
+            "items": {"type": "string"},
+            "$comment": "there are lots of kinds of identifiers; as long as they are a URI, the scheme is indicated by the identifier prefix"
         },
         "description": {
             "type": "string",
@@ -62,68 +57,30 @@
         "creator": {
             "title": "one or more person or organization entities responsible for the intellectual content of the resource",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/agent_type"
-            }
+            "items": {"$ref": "#/definitions/agent_type"}
         },
         "editor": {
             "title": "one or more person or organization entities responsible editing the resource",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/agent_type"
-            }
+            "items": {"$ref": "#/definitions/agent_type"}
         },
         "contributor": {
             "title": "one or more person or organization entities who contributed to creation of the resource",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/agent_type"
-            }
+            "items": {"$ref": "#/definitions/agent_type"}
         },
-        "publisher": {
-            "$ref": "#/definitions/agent_type"
-        },
+        "publisher": {"$ref": "#/definitions/agent_type"},
         "developer": {
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/agent_type"
-            }
-        },
-        "stewardship": {
-            "$ref": "#/definitions/agent_type"
-        },
-        "ecrro:ECRRO_0000600": {
-            "type": "object",
-            "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "const": "PropertyValue",
-                    "default": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "const": "ecrro:ECRRO_0000600",
-                    "default": "ecrro:ECRRO_0000600"
-                },
-                "name": {
-                    "type": "string",
-                    "default": "primary publication"
-                },
-                "value": {
-                    "type": "string"
-                }
-            }
+            "items": {"$ref": "#/definitions/agent_type"}
         },
         "keywords": {
             "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "description": "list of keywords"
+            "items": {"type": "string"},
+            "description": "list of words related to the content of the resource, for use in search interface. Pick words that users might use to find this resource."
         },
         "license": {
-            "title": "legal statement of conditions for use and access",
+            "description": "legal statement of conditions for use and access",
             "type": "array",
             "uniqueItems": true,
             "items": {
@@ -288,15 +245,13 @@
             "description": "string that identifies a particular version of the resource if it is not identified by the schema:identifier element"
         },
         "funding": {
-            "description": "An array of grants. Grant has a funder -- person or organization that provides financial support, or a sponsor-- person or organization that provides financial or other kinds of support (office space, lab supplies",
+            "description": "An array of grants. Grant has a funder -- person or organization that provides financial support, or a sponsor-- person or organization that provides financial or other kinds of support (office space, lab supplies, etc.)",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/grant_type"
-            }
+            "items": {"$ref": "#/definitions/grant_type"}
         },
         "audience": {
             "title": "Intended Audience/Target User",
-            "description": "terms from controlled vocabulary to identify the kinds of users who are the target of the described resource",
+            "description": "terms from ECRR Audience Types controlled vocabulary (http://cor.esipfed.org/ont/earthcube/AUT) that identify the kinds of users who are the target of the described resource. ",
             "type": "array",
             "items": {
                 "oneOf": [
@@ -386,6 +341,7 @@
         "about": {
             "title": "Science Domain",
             "type": "array",
+            "description": "terms from ECRR Academic Discipline controlled vocabulary (http://cor.esipfed.org/ont/earthcube/ADO) that identify the community expected to be interested in this resource",
             "uniqueItems": true,
             "items": {
                 "oneOf": [
@@ -1364,7 +1320,7 @@
         },
         "contentType": {
             "title": "Content Type(s) of Catalogued Objects in a Catalog or repository",
-            "description": "Content Type(s) of Catalogued Objects; one object or array of objects, could be anything to type is 'schema:Thing'; each with name and optional identifier",
+            "description": "Content Type(s) of Catalogued Objects; array of {name, identifier} tuples, could be anything, but recommend using sub types of 'schema:Thing'; identifier is optional. Only applicable if resourceType is catalog or repository",
             "type": "array",
             "items": {
                 "type": "object",
@@ -1374,38 +1330,31 @@
                         "default": "Thing",
                         "const": "Thing"
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "identifier": {
-                        "type": "string"
-                    }
+                    "name": {"type": "string"},
+                    "identifier": {"type": "string"},
+                    "required": ["name"]
                 }
             }
         },
         "isRelatedTo": {
             "title": "Related Resources",
-            "description": "array of labeled links {name, url} to related resources. the label should express the relationship to the target and identify the target for a user; URL should be a resolvable address to access the related resource (or some representation of it...). Machine readable endpoint for a web api (e.g. Swagger document goes here, typed as schema:Product",
+            "description": "array of labeled links {name, url} to related resources. the name (label) should express the relationship to the target and identify the target for a user; URL should be a resolvable address to access the related resource (or some representation of it...). Machine readable endpoint for a web api (e.g. Swagger document goes here, typed as schema:Product). Note that schema.org defined expected domain to be schema:Product or schema:Service. schema:WebAPI is the only subtype @type of schema:Service expected for an ECRR resource",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "@type": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "the schema.org type of the target resource"
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "url": {
-                        "type": "string"
-                    }
+                    "name": {"type": "string"},
+                    "url": {"type": "string"}
                 }
             }
         },
         "mainEntity": {
             "title": "Type of Resource",
-            "description": "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or srt vocabulary (respectively) can be specified.",
-            "items": {},
+            "description": "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) in the url value is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or SRT vocabulary (respectively) can be specified.",
             "oneOf": [
                 {
                     "title": "Bundled Object",
@@ -1521,59 +1470,579 @@
         },
         "encodingFormat": {
             "title": "Representation Format or base format for a profile specification",
-            "description": "format pattern is a registered MIME type prefix for the base format, and an application specific extension (after a ';' delimiter.  Values should be from the register at https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv ",
+            "description": "format pattern is a registered MIME type prefix for the base format, and an application specific extension (after a ';' delimiter.  Values should be from the 'use' column in the register at https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv ",
             "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "items": {"type": "string"}
         },
         "isBasedOn": {
             "title": "Semantic Resources it Uses",
             "description": "references to Semantic Resources used by the described resource",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
-        },
-        "dct:conformsTo": {
-            "title": "Conforms to",
-            "description": "references to specifications that the described resource is in conformance with",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
-        },
-        "eccro:ECRRO_0000501": {
-            "title": "profile of",
-            "description": "Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
-        },
-        "ecrro:ECRRO_0000502": {
-            "title": "Communication Protocol(s)",
-            "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/definedTerm_type"
-            }
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
         "applicationCategory": {
             "title": "Application function and subfunction",
-            "description": "strings use special syntac like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/SFO_0000001)",
+            "description": "strings use special syntax like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/sfo)",
             "type": "array",
             "items": {
-                "type": "string"
+                "oneOf": [
+                    {"title": "research software function",
+                        "const": {
+                            "name": "research software function",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000001"
+                        }
+                    },
+                    {"title": "research planning",
+                        "const": {
+                            "name": "research planning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000002"
+                        }
+                    },
+                    {"title": "user interaction",
+                        "const": {
+                            "name": "user interaction",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000003"
+                        }
+                    },
+                    {"title": "data acquisition",
+                        "const": {
+                            "name": "data acquisition",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000004"
+                        }
+                    },
+                    {"title": "data discovery and access",
+                        "const": {
+                            "name": "data discovery and access",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000005"
+                        }
+                    },
+                    {"title": "data exploration",
+                        "const": {
+                            "name": "data exploration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000006"
+                        }
+                    },
+                    {"title": "data preparation",
+                        "const": {
+                            "name": "data preparation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000007"
+                        }
+                    },
+                    {"title": "data processing and modeling",
+                        "const": {
+                            "name": "data processing and modeling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000008"
+                        }
+                    },
+                    {"title": "workflow management",
+                        "const": {
+                            "name": "workflow management",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000009"
+                        }
+                    },
+                    {"title": "data analysis",
+                        "const": {
+                            "name": "data analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000010"
+                        }
+                    },
+                    {"title": "visualization",
+                        "const": {
+                            "name": "visualization",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000011"
+                        }
+                    },
+                    {"title": "reporting",
+                        "const": {
+                            "name": "reporting",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000012"
+                        }
+                    },
+                    {"title": "data preservation",
+                        "const": {
+                            "name": "data preservation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000013"
+                        }
+                    },
+                    {"title": "programmer assistance",
+                        "const": {
+                            "name": "programmer assistance",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000014"
+                        }
+                    },
+                    {"title": "mental modeling",
+                        "const": {
+                            "name": "mental modeling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000015"
+                        }
+                    },
+                    {"title": "project planning",
+                        "const": {
+                            "name": "project planning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000016"
+                        }
+                    },
+                    {"title": "logistics planning",
+                        "const": {
+                            "name": "logistics planning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000017"
+                        }
+                    },
+                    {"title": "data management planning",
+                        "const": {
+                            "name": "data management planning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000018"
+                        }
+                    },
+                    {"title": "authentication and access control",
+                        "const": {
+                            "name": "authentication and access control",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000019"
+                        }
+                    },
+                    {"title": "user interface",
+                        "const": {
+                            "name": "user interface",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000020"
+                        }
+                    },
+                    {"title": "community support & social networking",
+                        "const": {
+                            "name": "community support & social networking",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000021"
+                        }
+                    },
+                    {"title": "notification",
+                        "const": {
+                            "name": "notification",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000022"
+                        }
+                    },
+                    {"title": "instrument control",
+                        "const": {
+                            "name": "instrument control",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000023"
+                        }
+                    },
+                    {"title": "instrument calibration",
+                        "const": {
+                            "name": "instrument calibration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000024"
+                        }
+                    },
+                    {"title": "streaming data handling",
+                        "const": {
+                            "name": "streaming data handling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000025"
+                        }
+                    },
+                    {"title": "data ingest",
+                        "const": {
+                            "name": "data ingest",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000026"
+                        }
+                    },
+                    {"title": "data query",
+                        "const": {
+                            "name": "data query",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000027"
+                        }
+                    },
+                    {"title": "data access/order",
+                        "const": {
+                            "name": "data access/order",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000028"
+                        }
+                    },
+                    {"title": "web crawling",
+                        "const": {
+                            "name": "web crawling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000029"
+                        }
+                    },
+                    {"title": "data harvesting",
+                        "const": {
+                            "name": "data harvesting",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000030"
+                        }
+                    },
+                    {"title": "data mining",
+                        "const": {
+                            "name": "data mining",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000033"
+                        }
+                    },
+                    {"title": "exploratory data analysis",
+                        "const": {
+                            "name": "exploratory data analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000034"
+                        }
+                    },
+                    {"title": "QA/QC",
+                        "const": {
+                            "name": "QA/QC",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000036"
+                        }
+                    },
+                    {"title": "subsetting",
+                        "const": {
+                            "name": "subsetting",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000039"
+                        }
+                    },
+                    {"title": "metadata assistance",
+                        "const": {
+                            "name": "metadata assistance",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000041"
+                        }
+                    },
+                    {
+                        "title": "data cleaning",
+                        "const": {
+                            "name": "data cleaning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000042"
+                        }
+                    },
+                    {
+                        "title": "data desensitization",
+                        "const": {
+                            "name": "data desensitization",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000043"
+                        }
+                    },
+                    {
+                        "title": "grid or mesh generation",
+                        "const": {
+                            "name": "grid or mesh generation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000044"
+                        }
+                    },
+                    {
+                        "title": "test data generation",
+                        "const": {
+                            "name": "test data generation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000045"
+                        }
+                    },
+                    {
+                        "title": "output validation",
+                        "const": {
+                            "name": "output validation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000046"
+                        }
+                    },
+                    {
+                        "title": "model coupling",
+                        "const": {
+                            "name": "model coupling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000047"
+                        }
+                    },
+                    {
+                        "title": "data processing",
+                        "const": {
+                            "name": "data processing",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000048"
+                        }
+                    },
+                    {
+                        "title": "computational model",
+                        "const": {
+                            "name": "computational model",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000049"
+                        }
+                    },
+                    {
+                        "title": "model calibration",
+                        "const": {
+                            "name": "model calibration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000050"
+                        }
+                    },
+                    {
+                        "title": "inversion/assimilation",
+                        "const": {
+                            "name": "inversion/assimilation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000051"
+                        }
+                    },
+                    {
+                        "title": "data integration",
+                        "const": {
+                            "name": "data integration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000053"
+                        }
+                    },
+                    {
+                        "title": "time series analysis",
+                        "const": {
+                            "name": "time series analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000054"
+                        }
+                    },
+                    {
+                        "title": "spatial analysis",
+                        "const": {
+                            "name": "spatial analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000055"
+                        }
+                    },
+                    {
+                        "title": "statistical analysis",
+                        "const": {
+                            "name": "statistical analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000056"
+                        }
+                    },
+                    {
+                        "title": "image processing",
+                        "const": {
+                            "name": "image processing",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000057"
+                        }
+                    },
+                    {
+                        "title": "text analysis",
+                        "const": {
+                            "name": "text analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000058"
+                        }
+                    },
+                    {
+                        "title": "graph or network analysis",
+                        "const": {
+                            "name": "graph or network analysis",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000059"
+                        }
+                    },
+                    {
+                        "title": "machine learning",
+                        "const": {
+                            "name": "machine learning",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000060"
+                        }
+                    },
+                    {
+                        "title": "display",
+                        "const": {
+                            "name": "display",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000062"
+                        }
+                    },
+                    {
+                        "title": "animation",
+                        "const": {
+                            "name": "animation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000063"
+                        }
+                    },
+                    {
+                        "title": "rendering",
+                        "const": {
+                            "name": "rendering",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000064"
+                        }
+                    },
+                    {
+                        "title": "document generation",
+                        "const": {
+                            "name": "document generation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000065"
+                        }
+                    },
+                    {
+                        "title": "report rendering",
+                        "const": {
+                            "name": "report rendering",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000066"
+                        }
+                    },
+                    {
+                        "title": "data reporting",
+                        "const": {
+                            "name": "data reporting",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000067"
+                        }
+                    },
+                    {
+                        "title": "usage monitoring",
+                        "const": {
+                            "name": "usage monitoring",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000068"
+                        }
+                    },
+                    {
+                        "title": "version control",
+                        "const": {
+                            "name": "version control",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000071"
+                        }
+                    },
+                    {
+                        "title": "code optimization",
+                        "const": {
+                            "name": "code optimization",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000072"
+                        }
+                    },
+                    {
+                        "title": "code validation and testing",
+                        "const": {
+                            "name": "code validation and testing",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000073"
+                        }
+                    },
+                    {
+                        "title": "reproducibility support",
+                        "const": {
+                            "name": "reproducibility support",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000100"
+                        }
+                    },
+                    {
+                        "title": "provenance management",
+                        "const": {
+                            "name": "provenance management",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000101"
+                        }
+                    },
+                    {
+                        "title": "workflow design",
+                        "const": {
+                            "name": "workflow design",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000102"
+                        }
+                    },
+                    {
+                        "title": "workflow orchestration",
+                        "const": {
+                            "name": "workflow orchestration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000103"
+                        }
+                    },
+                    {
+                        "title": "workflow execution",
+                        "const": {
+                            "name": "workflow execution",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000104"
+                        }
+                    },
+                    {
+                        "title": "long-term archiving",
+                        "const": {
+                            "name": "long-term archiving",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000105"
+                        }
+                    },
+                    {
+                        "title": "backup",
+                        "const": {
+                            "name": "backup",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000106"
+                        }
+                    },
+                    {
+                        "title": "data migration",
+                        "const": {
+                            "name": "data migration",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000107"
+                        }
+                    },
+                    {
+                        "title": "data transformation",
+                        "const": {
+                            "name": "data transformation",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000310"
+                        }
+                    },
+                    {
+                        "title": "user management",
+                        "const": {
+                            "name": "user management",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000311"
+                        }
+                    }
+                ]
             }
         },
         "runtimePlatform": {
             "title": "runtime platform",
             "description": "runtime environments for the application, uses controlled vocabulary http://cor.esipfed.org/ont/earthcube/RTE. content is crude at this point, string entries in array with platform name and URI; should be DefinedTerm",
             "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "items": {"type": "string"}
         },
         "programmingLanguage": {
             "title": "Programming language",
@@ -1587,12 +2056,8 @@
                         "default": "ComputerLanguage",
                         "const": "ComputerLanguage"
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "identifier": {
-                        "type": "string"
-                    }
+                    "name": {"type": "string"},
+                    "identifier": {"type": "string"}
                 }
             }
         },
@@ -1600,37 +2065,29 @@
             "title": "Supporting input and output data formats",
             "description": "critical bit for linking data and software; the input encodingFormat is used to match to the distribution encodingFormat for a dataset",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/supportingData_type"
-            }
+            "items": {"$ref": "#/definitions/supportingData_type"}
         },
         "codeRepository": {
             "title": "Code Repository",
-            "description": "name and URL location for repository in which code for an application or semantic resource is managed",
+            "description": "name and URL location for repository in which code for an application or semantic resource is managed. Use schema:CreativeWork as kludge to implement simple labeled link.",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
-        "installURL": {
+        "installUrl": {
             "title": "Software Install URL",
-            "description": "URL that locates an installer package or instructions for installing software for use in a local environment",
+            "description": "URL that locates an installer package or instructions for installing software for use in a local environment. Use schema:CreativeWork as kludge to implement simple labeled link.",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/creativeWork_type"
-            }
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
         "potentialAction": {
             "title": "Direct invocation of App on the web",
             "description": "use schema.org Action to document url or url template and parameters to invoke the application through a web accessible location. At this point, schema is set up for online one action-- an HTTP Get that invokes the web application. The url template can have only one paramter 'contentURL' that will be the contentURL from a distribution for a dataset that has an encoding format matchign the supportingData input for this application.",
             "type": "array",
-            "items": {
-                "$ref": "#/definitions/action_type"
-            }
+            "items": {"$ref": "#/definitions/action_type"}
         },
         "url": {
             "title": "URL to access the resource.",
-            "description": "For a Service instance, this is the URL of the Service endPoint. For DataSets, the recommended content is a link to a landing page with a description of the resource and other links to access it. Other important URLs have specific properties in this schema and should be populated there, e.g. subjectOf, installURL, codeRepository, service endpoint. For web applications, the url to invoke the app should be in potentialAction/Action/target/EntryPoint/urlTemplate. ",
+            "description": "For a Service instance, this is the URL of the Service endPoint. For DataSets, the recommended content is a link to a landing page with a description of the resource and other links to access it. Other important URLs have specific properties in this schema and should be populated there, e.g. subjectOf, installURL, codeRepository, service endpoint. For web applications, the url to invoke the app should be in potentialAction/Action/target/EntryPoint/urlTemplate.",
             "type": "array",
             "items": {
                 "$comment": "this is not consistent with schema.org expected type 'string', but with LinkRole; use for labeled urls",
@@ -1641,32 +2098,55 @@
                         "default": "LinkRole",
                         "const": "LinkRole"
                     },
-                    "url": {
-                        "type": "string"
-                    },
-                    "linkRelationship": {
-                        "type": "string"
-                    }
+                    "url": {"type": "string"},
+                    "linkRelationship": {"type": "string"}
                 }
             }
         },
-        "additionalProperty": {
+        "$comment": "elements below here are schema.org extensions, some from other vocabularies, others defined in this schema.  These are defined inline here to work with the JSON forms user interface tools. keys that have a 'propertyID' property are mapped to ecrr defined properties implemented as additionalProperty/PropertyValue in the JSON schema for instance documents",
+        "dct:conformsTo": {
+            "title": "Conforms to",
+            "description": "references to specifications that the described resource is in conformance with",
             "type": "array",
-            "title": "Other Properties",
-            "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty",
-            "items": {
-                "$ref": "#/definitions/additionalProperty_type"
-            }
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
-        "ecrro:ECRRO_0001301": {
+        "dct:bibliographicCitation": {
+            "title": "Bibliographic Citation",
+            "description": "suggested citation text to reference the described resource in reference lists",
+            "type": "string"
+        },
+
+        "primaryPublication": {
+            "type": "array",
+            "title": "Primary publication(s)",
+            "description": "text citation to one or more publications about the resource; value is array of strings that are standard bibliographic citations; map to ecrro:ECRRO_0000600 in JSON-LD context",
+            "propertyID": "ecrro:ECRRO_0000600",
+            "items": {"type": "string"}
+        },
+        "profileOf": {
+            "title": "profile of",
+            "propertyID": "ecrro:ECRRO_0000501",
+            "description": "Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification.  Map key to ecrro:ECRRO_0000501 in JSON-LD context",
+            "type": "array",
+            "items": {"$ref": "#/definitions/creativeWork_type"}
+        },
+        "communicationProtocol": {
+            "title": "Communication Protocol(s)",
+            "propertyID": "ecrro:ECRRO_0000502",
+            "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
+            "type": "array",
+            "items": {"$ref": "#/definitions/definedTerm_type"}
+        },
+        "registrationMetadata": {
+            "title": "registration metadata",
+            "description": "object to define metadata creator and update date",
+            "propertyID": "ecrro:ECRRO_0001301",
             "$ref": "#/definitions/metadataCreatorType"
         },
-        "dc:BibliographicCitation": {
-            "title": "Bibliographic Citation",
-            "$ref": "#/definitions/citationType"
-        },
-        "ecrro:ECRRO_0000138": {
+
+        "resourceMaturity": {
             "title": "Maturity",
+            "propertyID": "ecrro:ECRRO_0000138",
             "type": "object",
             "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
             "properties": {
@@ -1761,187 +2241,91 @@
                             }
                         }
                     ]
-                },
-                "@type": {
-                    "type": "string",
-                    "default": "PropertyValue",
-                    "const": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "ecrro:ECRRO_0000138",
-                    "const": "ecrro:ECRRO_0000138"
-                },
-                "name": {
-                    "type": "string",
-                    "default": "has maturity state",
-                    "readonly": true
                 }
             }
         },
-        "ecrro:ECRRO_0000219": {
+        "expectedLifetime": {
             "type": "object",
+            "propertyID": "ecrro:ECRRO_0000219",
             "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
             "properties": {
-                "name": {
-                    "type": "string",
-                    "default": "expected lifetime"
-                },
-                "@type": {
-                    "type": "string",
-                    "default": "PropertyValue",
-                    "const": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "ecrro:ECRRO_0000219",
-                    "const": "ecrro:ECRRO_0000219"
-                },
-                "value": {
-                    "oneOf": [
-                        {
-                            "title": "Long-term",
-                            "const": {
-                                "name": "Long-term",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000001"
-                            }
-                        },
-                        {
-                            "title": "More than 5 years",
-                            "const": {
-                                "name": "More than 5 years",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000002"
-                            }
-                        },
-                        {
-                            "title": "1 - 5 years",
-                            "const": {
-                                "name": "1 - 5 years",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000003"
-                            }
-                        },
-                        {
-                            "title": "Unknown",
-                            "const": {
-                                "name": "Unknown",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000004"
-                            }
-                        },
-                        {
-                            "title": "Not applicable",
-                            "const": {
-                                "name": "Not applicable",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000005"
-                            }
+                "oneOf": [
+                    {
+                        "title": "Long-term",
+                        "const": {
+                            "name": "Long-term",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000001"
                         }
-                    ]
-                }
-            }
-        },
-        "ecrro:ECRRO_0000218": {
-            "type": "object",
-            "description": "stewardship: name of person or organization responsible for maintenance of the resource",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "const": "PropertyValue",
-                    "default": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "ecrro:ECRRO_0000218",
-                    "const": "ecrro:ECRRO_0000218"
-                },
-                "name": {
-                    "type": "string",
-                    "default": "Stewardship",
-                    "const": "Stewardship"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/agent_type"
+                    },
+                    {
+                        "title": "More than 5 years",
+                        "const": {
+                            "name": "More than 5 years",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000002"
+                        }
+                    },
+                    {
+                        "title": "1 - 5 years",
+                        "const": {
+                            "name": "1 - 5 years",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000003"
+                        }
+                    },
+                    {
+                        "title": "Unknown",
+                        "const": {
+                            "name": "Unknown",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000004"
+                        }
+                    },
+                    {
+                        "title": "Not applicable",
+                        "const": {
+                            "name": "Not applicable",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000005"
+                        }
                     }
-                }
+                ]
             }
         },
-        "dependencies": {
-            "type": "object",
+        "stewardship": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/agent_type"},
+            "title": "Stewardship",
+            "description": "name of person or organization (agent) responsible for maintenance of the resource",
+            "propertyID": "ecrro:ECRRO_0000218"
+        },
+        "dependsOn": {
+            "type": "array",
+            "title": "dependencies",
             "description": "dependencies and their url",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "@type": {
-                    "type": "string",
-                    "const": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "const": "http://purl.obolibrary.org/obo/RO_0002502"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/creativeWork_type"
-                    }
-                }
-            }
+            "propertyID": "http://purl.obolibrary.org/obo/RO_0002502",
+            "items": {"$ref": "#/definitions/creativeWork_type"}
         },
-        "ecrro:ECRRO_0000017": {
+        "usage": {
             "type": "object",
+            "propertyID": "ecrro:ECRRO_0000017",
             "title": "Current Usage Level",
             "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "default": "Usage",
-                    "const": "Usage"
-                },
-                "@type": {
-                    "type": "string",
-                    "default": "PropertyValue",
-                    "const": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "ecrro:ECRRO_0000017",
-                    "const": "ecrro:ECRRO_0000017"
-                },
-                "value": {
-                    "$ref": "#/definitions/definedTerm_type"
-                }
-            }
+            "properties": {"$ref": "#/definitions/definedTerm_type"}
         },
-        "ecrro:ECRRO_0000503": {
-            "type": "object",
-            "description": "Interface specification",
-            "properties": {
-                "@type": {
-                    "type": "string",
-                    "default": "PropertyValue",
-                    "const": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "ecrro:ECRRO_0000503",
-                    "const": "ecrro:ECRRO_0000503"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/creativeWork_type"
-                    }
-                }
-            }
+        "interfaceType": {
+            "type": "array",
+            "items": {"$ref": "#/definitions/creativeWork_type"},
+            "title": "Interface type",
+            "propertyID": "ecrro:ECRRO_0000503",
+            "description": "title and identifier for specification of an interface"
+        },
+        "additionalProperty": {
+            "type": "array",
+            "title": "Other Properties",
+            "description": "EC resource registry properties that extend Schema.org are implemented as an array of PropertyValue inside a schema:additionalProperty in the JSON-LD that is loaded to the resource registry; this maintains compatibility with the schema.org validator",
+            "items": {"$ref": "#/definitions/additionalProperty_type"}
         }
     },
     "required": [
@@ -1953,35 +2337,11 @@
         "mainEntity"
     ],
     "definitions": {
-        "identifier_type": {
-            "type": "object",
-            "title": "identifier",
-            "properties": {
-                "value": {
-                    "type": "string"
-                },
-                "@type": {
-                    "type": "string",
-                    "const": "PropertyValue",
-                    "default": "PropertyValue"
-                },
-                "propertyID": {
-                    "type": "string",
-                    "default": "DOIURL"
-                },
-                "name": {
-                    "type": "string",
-                    "default": "DOI"
-                }
-            }
-        },
         "agent_type": {
             "description": "{name (optional)identifier} pairs, typed either Person or Organization.  Other person or organization properties could be added",
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "enum": [
@@ -1990,9 +2350,7 @@
                     ],
                     "default": "Person"
                 },
-                "identifier": {
-                    "type": "string"
-                }
+                "identifier": {"type": "string"}
             },
             "required": [
                 "@type",
@@ -2009,20 +2367,14 @@
                     "default": "Grant",
                     "const": "Grant"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "identifier": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
+                "identifier": {"type": "string"},
                 "sponsor": {
                     "description": "agent that provided financial or other kinds of support for development of resource",
                     "$comment": "$ref not working. #/definitions/agent_type",
                     "type": "object",
                     "properties": {
-                        "name": {
-                            "type": "string"
-                        },
+                        "name": {"type": "string"},
                         "@type": {
                             "type": "string",
                             "enum": [
@@ -2031,9 +2383,7 @@
                             ],
                             "default": "Person"
                         },
-                        "identifier": {
-                            "type": "string"
-                        }
+                        "identifier": {"type": "string"}
                     },
                     "required": [
                         "@type",
@@ -2045,9 +2395,7 @@
                     "$comment": "$ref not working. #/definitions/agent_type",
                     "type": "object",
                     "properties": {
-                        "name": {
-                            "type": "string"
-                        },
+                        "name": {"type": "string"},
                         "@type": {
                             "type": "string",
                             "enum": [
@@ -2056,9 +2404,7 @@
                             ],
                             "default": "Person"
                         },
-                        "identifier": {
-                            "type": "string"
-                        }
+                        "identifier": {"type": "string"}
                     },
                     "required": [
                         "@type",
@@ -2074,17 +2420,13 @@
         "audience_type": {
             "type": "object",
             "properties": {
-                "audienceType": {
-                    "type": "string"
-                },
+                "audienceType": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "Audience",
                     "const": "Audience"
                 },
-                "identifier": {
-                    "type": "string"
-                }
+                "identifier": {"type": "string"}
             },
             "required": [
                 "@type",
@@ -2094,49 +2436,37 @@
         "creativeWork_type": {
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "CreativeWork",
                     "const": "CreativeWork"
                 },
-                "url": {
-                    "type": "string"
-                }
+                "url": {"type": "string"}
             }
         },
         "resourceTypes_type": {
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "CreativeWork",
                     "const": "CreativeWork"
                 },
-                "url": {
-                    "type": "string"
-                }
+                "url": {"type": "string"}
             }
         },
         "definedTerm_type": {
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "DefinedTerm",
                     "const": "DefinedTerm"
                 },
-                "identifier": {
-                    "type": "string"
-                }
+                "identifier": {"type": "string"}
             },
             "required": [
                 "identifier",
@@ -2147,9 +2477,7 @@
         "supportingData_type": {
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "DataFeed",
@@ -2165,11 +2493,9 @@
                 },
                 "encodingFormat": {
                     "title": "file format and profile for input or output data to/from the application (consistent with value of 'positition' element)",
-                    "description": "mime type with 'type' or 'application' extension that indicates specific application or profile compatibility of file content; values should come from https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv",
+                    "description": "mime type with 'type' or 'application' extension that indicates specific application or profile compatibility of file content; values should come from the 'use' column in the registry at https://github.com/earthcube/GeoCODES-Metadata/blob/main/resources/encodingFormat.csv",
                     "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "items": {"type": "string"}
                 }
             }
         },
@@ -2197,9 +2523,7 @@
                             "type": "string",
                             "default": "Open software on the web"
                         },
-                        "urlTemplate": {
-                            "type": "string"
-                        },
+                        "urlTemplate": {"type": "string"},
                         "httpMethod": {
                             "title": "HTTP Method",
                             "type": "array",
@@ -2224,11 +2548,10 @@
             }
         },
         "citationType": {
+            "title": "Bibliographic citation as a string",
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
-                },
+                "name": {"type": "string"},
                 "@type": {
                     "type": "string",
                     "default": "PropertyValue",
@@ -2236,12 +2559,10 @@
                 },
                 "propertyID": {
                     "type": "string",
-                    "default": "dc:BibliographicCitation",
-                    "const": "dc:BibliographicCitation"
+                    "default": "dct:bibliographicCitation",
+                    "const": "dct:bibliographicCitation"
                 },
-                "value": {
-                    "type": "string"
-                }
+                "value": {"type": "string"}
             }
         },
         "metadataCreatorType": {
@@ -2283,12 +2604,8 @@
                                     "default": "Person",
                                     "const": "Person"
                                 },
-                                "name": {
-                                    "type": "string"
-                                },
-                                "identifier": {
-                                    "type": "string"
-                                }
+                                "name": {"type": "string"},
+                                "identifier": {"type": "string"}
                             }
                         },
                         "datePublished": {
@@ -2302,7 +2619,9 @@
         "additionalProperty_type": {
             "anyOf": [
                 {
+                    "title": "Bibliographic citation",
                     "type": "object",
+                    "description": "suggested citation text to reference the described resource in reference lists",
                     "properties": {
                         "@type": {
                             "type": "string",
@@ -2311,114 +2630,15 @@
                         },
                         "propertyID": {
                             "type": "string",
-                            "default": "dc:BibliographicCitation",
-                            "const": "dc:BibliographicCitation"
+                            "default": "dct:bibliographicCitation",
+                            "const": "dct:bibliographicCitation"
                         },
-                        "name": {
-                            "type": "string"
-                        },
-                        "value": {
-                            "type": "string"
-                        }
+                        "name": {"type": "string"},
+                        "value": {"type": "string"}
                     }
                 },
                 {
-                    "type": "object",
-                    "description": "Interface specification",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000503",
-                            "const": "ecrro:ECRRO_0000503"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "value": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/creativeWork_type"
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "dependencies and their url",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "http://purl.obolibrary.org/obo/RO_0002502",
-                            "const": "http://purl.obolibrary.org/obo/RO_0002502"
-                        },
-                        "name": {
-                            "type": "string"
-                        },
-                        "value": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/creativeWork_type"
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000138",
-                            "const": "ecrro:ECRRO_0000138"
-                        },
-                        "name": {
-                            "type": "string",
-                            "default": "has maturity state"
-                        },
-                        "value": {
-                            "$ref": "#/definitions/definedTerm_type"
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000219",
-                            "const": "ecrro:ECRRO_0000219"
-                        },
-                        "name": {
-                            "type": "string",
-                            "default": "expected lifetime"
-                        },
-                        "value": {
-                            "$ref": "#/definitions/definedTerm_type"
-                        }
-                    }
-                },
-                {
+                    "title": "Primary publication",
                     "type": "object",
                     "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
                     "properties": {
@@ -2436,9 +2656,117 @@
                             "type": "string",
                             "default": "primary publication"
                         },
+                        "value": {"type": "string"}
+                    }
+                },
+                {
+                    "title": "Interface type",
+                    "type": "object",
+                    "description": "Link to specification defining input and output file formats and information models, and protocol for requesting operations",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000503",
+                            "const": "ecrro:ECRRO_0000503"
+                        },
+                        "name": {"type": "string"},
                         "value": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/creativeWork_type"}
                         }
+                    }
+                },
+                {
+                    "title": "Dependencies",
+                    "type": "object",
+                    "description": "dependencies and their url",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "http://purl.obolibrary.org/obo/RO_0002502",
+                            "const": "http://purl.obolibrary.org/obo/RO_0002502"
+                        },
+                        "name": {"type": "string"},
+                        "value": {
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/creativeWork_type"}
+                        }
+                    }
+                },
+                {
+                    "title": "Resource maturity status",
+                    "type": "object",
+                    "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000138",
+                            "const": "ecrro:ECRRO_0000138"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "has maturity state"
+                        },
+                        "value": {"$ref": "#/definitions/definedTerm_type"}
+                    }
+                },
+                {
+                    "title": "Expected lifetime",
+                    "type": "object",
+                    "description": "Time duration it is anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000219",
+                            "const": "ecrro:ECRRO_0000219"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "expected lifetime"
+                        },
+                        "value": {"$ref": "#/definitions/definedTerm_type"}
+                    }
+                },
+                {
+                    "title": "Usage volume",
+                    "type": "object",
+                    "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000017",
+                            "const": "ecrro:ECRRO_0000017"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "Usage"
+                        },
+                        "value": {"$ref": "#/definitions/definedTerm_type"}
                     }
                 },
                 {
@@ -2461,32 +2789,7 @@
                         },
                         "value": {
                             "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/agent_type"
-                            }
-                        }
-                    }
-                },
-                {
-                    "type": "object",
-                    "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "ecrro:ECRRO_0000017",
-                            "const": "ecrro:ECRRO_0000017"
-                        },
-                        "name": {
-                            "type": "string",
-                            "default": "Usage"
-                        },
-                        "value": {
-                            "$ref": "#/definitions/definedTerm_type"
+                            "items": {"$ref": "#/definitions/agent_type"}
                         }
                     }
                 },
@@ -2529,17 +2832,11 @@
                                             "default": "Person",
                                             "const": "Person"
                                         },
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "identifier": {
-                                            "type": "string"
-                                        }
+                                        "name": {"type": "string"},
+                                        "identifier": {"type": "string"}
                                     }
                                 },
-                                "datePublished": {
-                                    "type": "string"
-                                }
+                                "datePublished": {"type": "string"}
                             }
                         }
                     }

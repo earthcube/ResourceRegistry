@@ -17,6 +17,9 @@
         "profileOf": "ecrro:0000501",
         "communicationProtocol": "ecrro:0000502",
         "interfaceType": "ecrro:0000503",
-        "registrationMetadata": "ecrro:ECRRO_0001301"
+        "registrationMetadata": "ecrro:ECRRO_0001301",
+        "conformsTo":"http://purl.org/dc/terms/conformsTo",
+        "bibliographicCitation":"http://purl.org/dc/terms/bibliographicCitation"
+     
     }
 }
