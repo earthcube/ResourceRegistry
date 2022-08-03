@@ -1,10 +1,14 @@
 {
-    "@context": "./ecrr-context.json",
-    "$comment": "Simplified for use in a forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_1.js) to show up in the forms UI. ",
+    "$schema": "https://json-schema.org/draft-07/schema#",
     "type": "object",
     "title": "EarthCube Resource Registry (ECRR) Resource Description",
-    "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all resource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface. This schema Updated by S. Richard to align with existing ECRR metadata.",
+    "description": "JSON schema for EarthCube Resource Registry (ECRR) resource descriptions. The base object is common to all resource types, and definition section adds resource-specific properties. Resource types are Specification, UseCase, InterchangeFormat, Software, Interface. This schema Updated by S. Richard to align with existing ECRR metadata.  Simplified for use in a forms application. Additional properties are included inLine as opposed to array of additionalProperty/PropertyValue elements. Edits to schema should be made in the ECRR jsonforms application (https://github.com/earthcube/jsonld_forms/blob/master/src/schema/tools/ecrr_jsonschema_1_1.js) to show up in the forms UI.  This schema merged with Dataset schema in GeoCODES metadata repo to generate schema applicable to all EarthCube GeoCODES resources.",
     "properties": {
+        "@context": {
+            "type": "string",
+            "description":"this will likely need update, context doc should be in a stable web location",
+            "const": "./ecrr-context.json"
+        },
         "@id": {
             "type": "string",
             "description": "globally identifier string for this metadata record (not the resource it describes!), commonly a UUID with or without an HTTP prefix for web resolution"
@@ -84,7 +88,7 @@
             "type": "array",
             "uniqueItems": true,
             "items": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "title": "Creative Commons Attribution (CC BY)",
                         "const": {
@@ -254,7 +258,7 @@
             "description": "terms from ECRR Audience Types controlled vocabulary (http://cor.esipfed.org/ont/earthcube/AUT) that identify the kinds of users who are the target of the described resource. ",
             "type": "array",
             "items": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "title": "Data Producers",
                         "const": {
@@ -344,976 +348,782 @@
             "description": "terms from ECRR Academic Discipline controlled vocabulary (http://cor.esipfed.org/ont/earthcube/ADO) that identify the community expected to be interested in this resource",
             "uniqueItems": true,
             "items": {
-                "oneOf": [
+                "anyOf": [
                     {
                         "title": "Anthropology",
-                        "const": [
-                            {
-                                "name": "Anthropology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000012"
-                            }
-                        ]
+                        "const": {
+                            "name": "Anthropology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000012"
+                        }
                     },
                     {
                         "title": "Applied Sciences",
-                        "const": [
-                            {
-                                "name": "Applied Sciences",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000024"
-                            }
-                        ]
+                        "const": {
+                            "name": "Applied Sciences",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000024"
+                        }
                     },
                     {
                         "title": "Archaeology",
-                        "const": [
-                            {
-                                "name": "Archaeology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000013"
-                            }
-                        ]
+                        "const": {
+                            "name": "Archaeology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000013"
+                        }
                     },
                     {
                         "title": "Atmospheric Chemistry",
-                        "const": [
-                            {
-                                "name": "Atmospheric Chemistry",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000037"
-                            }
-                        ]
+                        "const": {
+                            "name": "Atmospheric Chemistry",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000037"
+                        }
                     },
                     {
                         "title": "Atmospheric Dynamics",
-                        "const": [
-                            {
-                                "name": "Atmospheric Dynamics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000038"
-                            }
-                        ]
+                        "const": {
+                            "name": "Atmospheric Dynamics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000038"
+                        }
                     },
                     {
                         "title": "Atmospheric Physics",
-                        "const": [
-                            {
-                                "name": "Atmospheric Physics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000036"
-                            }
-                        ]
+                        "const": {
+                            "name": "Atmospheric Physics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000036"
+                        }
                     },
                     {
                         "title": "Atmospheric Science",
-                        "const": [
-                            {
-                                "name": "Atmospheric Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000033"
-                            }
-                        ]
+                        "const": {
+                            "name": "Atmospheric Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000033"
+                        }
                     },
                     {
                         "title": "Biogeography",
-                        "const": [
-                            {
-                                "name": "Biogeography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000039"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biogeography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000039"
+                        }
                     },
                     {
                         "title": "Biogeology",
-                        "const": [
-                            {
-                                "name": "Biogeology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000057"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biogeology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000057"
+                        }
                     },
                     {
                         "title": "Biogeophysics",
-                        "const": [
-                            {
-                                "name": "Biogeophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000090"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biogeophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000090"
+                        }
                     },
                     {
                         "title": "Biological Oceanography",
-                        "const": [
-                            {
-                                "name": "Biological Oceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000047"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biological Oceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000047"
+                        }
                     },
                     {
                         "title": "Biology",
-                        "const": [
-                            {
-                                "name": "Biology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003070"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003070"
+                        }
                     },
                     {
                         "title": "Biostratigraphy",
-                        "const": [
-                            {
-                                "name": "Biostratigraphy",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000108"
-                            }
-                        ]
+                        "const": {
+                            "name": "Biostratigraphy",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000108"
+                        }
                     },
                     {
                         "title": "Chemical Hydrology",
-                        "const": [
-                            {
-                                "name": "Chemical Hydrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000080"
-                            }
-                        ]
+                        "const": {
+                            "name": "Chemical Hydrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000080"
+                        }
                     },
                     {
                         "title": "Chemical Oceanography",
-                        "const": [
-                            {
-                                "name": "Chemical Oceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000048"
-                            }
-                        ]
+                        "const": {
+                            "name": "Chemical Oceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000048"
+                        }
                     },
                     {
                         "title": "Chemistry",
-                        "const": [
-                            {
-                                "name": "Chemistry",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003314"
-                            }
-                        ]
+                        "const": {
+                            "name": "Chemistry",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003314"
+                        }
                     },
                     {
                         "title": "Climatology",
-                        "const": [
-                            {
-                                "name": "Climatology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000035"
-                            }
-                        ]
+                        "const": {
+                            "name": "Climatology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000035"
+                        }
                     },
                     {
                         "title": "Coastal Geography",
-                        "const": [
-                            {
-                                "name": "Coastal Geography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000045"
-                            }
-                        ]
+                        "const": {
+                            "name": "Coastal Geography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000045"
+                        }
                     },
                     {
                         "title": "Discipline-agnostic",
-                        "const": [
-                            {
-                                "name": "Discipline-agnostic",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000188"
-                            }
-                        ]
+                        "const": {
+                            "name": "Discipline-agnostic",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000188"
+                        }
                     },
                     {
                         "title": "Earth Science",
-                        "const": [
-                            {
-                                "name": "Earth Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000021"
-                            }
-                        ]
+                        "const": {
+                            "name": "Earth Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000021"
+                        }
                     },
                     {
                         "title": "Ecohydrology",
-                        "const": [
-                            {
-                                "name": "Ecohydrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000081"
-                            }
-                        ]
+                        "const": {
+                            "name": "Ecohydrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000081"
+                        }
                     },
                     {
                         "title": "Ecology",
-                        "const": [
-                            {
-                                "name": "Ecology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000610"
-                            }
-                        ]
+                        "const": {
+                            "name": "Ecology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000610"
+                        }
                     },
                     {
                         "title": "Economic Geology",
-                        "const": [
-                            {
-                                "name": "Economic Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000058"
-                            }
-                        ]
+                        "const": {
+                            "name": "Economic Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000058"
+                        }
                     },
                     {
                         "title": "Edaphology",
-                        "const": [
-                            {
-                                "name": "Edaphology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000053"
-                            }
-                        ]
+                        "const": {
+                            "name": "Edaphology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000053"
+                        }
                     },
                     {
                         "title": "Engineering and Technology",
-                        "const": [
-                            {
-                                "name": "Engineering and Technology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000027"
-                            }
-                        ]
+                        "const": {
+                            "name": "Engineering and Technology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000027"
+                        }
                     },
                     {
                         "title": "Engineering Geology",
-                        "const": [
-                            {
-                                "name": "Engineering Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000059"
-                            }
-                        ]
+                        "const": {
+                            "name": "Engineering Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000059"
+                        }
                     },
                     {
                         "title": "Environmental Chemistry",
-                        "const": [
-                            {
-                                "name": "Environmental Chemistry",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000029"
-                            }
-                        ]
+                        "const": {
+                            "name": "Environmental Chemistry",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000029"
+                        }
                     },
                     {
                         "title": "Environmental Geology",
-                        "const": [
-                            {
-                                "name": "Environmental Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000060"
-                            }
-                        ]
+                        "const": {
+                            "name": "Environmental Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000060"
+                        }
                     },
                     {
                         "title": "Environmental Science",
-                        "const": [
-                            {
-                                "name": "Environmental Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000028"
-                            }
-                        ]
+                        "const": {
+                            "name": "Environmental Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000028"
+                        }
                     },
                     {
                         "title": "Exploration Geophysics",
-                        "const": [
-                            {
-                                "name": "Exploration Geophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000091"
-                            }
-                        ]
+                        "const": {
+                            "name": "Exploration Geophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000091"
+                        }
                     },
                     {
                         "title": "Formal Sciences",
-                        "const": [
-                            {
-                                "name": "Formal Sciences",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000023"
-                            }
-                        ]
+                        "const": {
+                            "name": "Formal Sciences",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000023"
+                        }
                     },
                     {
                         "title": "Geobiology",
-                        "const": [
-                            {
-                                "name": "Geobiology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000055"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geobiology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000055"
+                        }
                     },
                     {
                         "title": "Geochemistry",
-                        "const": [
-                            {
-                                "name": "Geochemistry",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000030"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geochemistry",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000030"
+                        }
                     },
                     {
                         "title": "Geodesy",
-                        "const": [
-                            {
-                                "name": "Geodesy",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000031"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geodesy",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000031"
+                        }
                     },
                     {
                         "title": "Geodynamics",
-                        "const": [
-                            {
-                                "name": "Geodynamics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000093"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geodynamics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000093"
+                        }
                     },
                     {
                         "title": "Geologic Modeling",
-                        "const": [
-                            {
-                                "name": "Geologic Modeling",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000061"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geologic Modeling",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000061"
+                        }
                     },
                     {
                         "title": "Geological Oceanography",
-                        "const": [
-                            {
-                                "name": "Geological Oceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000049"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geological Oceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000049"
+                        }
                     },
                     {
                         "title": "Geology",
-                        "const": [
-                            {
-                                "name": "Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000056"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000056"
+                        }
                     },
                     {
                         "title": "Geomagnetism",
-                        "const": [
-                            {
-                                "name": "Geomagnetism",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000094"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geomagnetism",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000094"
+                        }
                     },
                     {
                         "title": "Geomorphology",
-                        "const": [
-                            {
-                                "name": "Geomorphology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000062"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geomorphology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000062"
+                        }
                     },
                     {
                         "title": "Geophysical Fluid Dynamics",
-                        "const": [
-                            {
-                                "name": "Geophysical Fluid Dynamics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000092"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geophysical Fluid Dynamics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000092"
+                        }
                     },
                     {
                         "title": "Geophysics",
-                        "const": [
-                            {
-                                "name": "Geophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000063"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000063"
+                        }
                     },
                     {
                         "title": "Geostatistics",
-                        "const": [
-                            {
-                                "name": "Geostatistics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000077"
-                            }
-                        ]
+                        "const": {
+                            "name": "Geostatistics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000077"
+                        }
                     },
                     {
                         "title": "Glaciology",
-                        "const": [
-                            {
-                                "name": "Glaciology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000078"
-                            }
-                        ]
+                        "const": {
+                            "name": "Glaciology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000078"
+                        }
                     },
                     {
                         "title": "Historical Geology",
-                        "const": [
-                            {
-                                "name": "Historical Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000064"
-                            }
-                        ]
+                        "const": {
+                            "name": "Historical Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000064"
+                        }
                     },
                     {
                         "title": "Human Geography",
-                        "const": [
-                            {
-                                "name": "Human Geography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000015"
-                            }
-                        ]
+                        "const": {
+                            "name": "Human Geography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000015"
+                        }
                     },
                     {
                         "title": "Hydrogeology",
-                        "const": [
-                            {
-                                "name": "Hydrogeology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000082"
-                            }
-                        ]
+                        "const": {
+                            "name": "Hydrogeology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000082"
+                        }
                     },
                     {
                         "title": "Hydroinformatics",
-                        "const": [
-                            {
-                                "name": "Hydroinformatics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000083"
-                            }
-                        ]
+                        "const": {
+                            "name": "Hydroinformatics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000083"
+                        }
                     },
                     {
                         "title": "Hydrology",
-                        "const": [
-                            {
-                                "name": "Hydrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000079"
-                            }
-                        ]
+                        "const": {
+                            "name": "Hydrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000079"
+                        }
                     },
                     {
                         "title": "Hydrometeorology",
-                        "const": [
-                            {
-                                "name": "Hydrometeorology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000084"
-                            }
-                        ]
+                        "const": {
+                            "name": "Hydrometeorology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000084"
+                        }
                     },
                     {
                         "title": "Invertebrate Paleontology",
-                        "const": [
-                            {
-                                "name": "Invertebrate Paleontology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000103"
-                            }
-                        ]
+                        "const": {
+                            "name": "Invertebrate Paleontology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000103"
+                        }
                     },
                     {
                         "title": "Isotope Hydrology",
-                        "const": [
-                            {
-                                "name": "Isotope Hydrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000085"
-                            }
-                        ]
+                        "const": {
+                            "name": "Isotope Hydrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000085"
+                        }
                     },
                     {
                         "title": "Landscape Ecology",
-                        "const": [
-                            {
-                                "name": "Landscape Ecology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000088"
-                            }
-                        ]
+                        "const": {
+                            "name": "Landscape Ecology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000088"
+                        }
                     },
                     {
                         "title": "Limnology",
-                        "const": [
-                            {
-                                "name": "Limnology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000087"
-                            }
-                        ]
+                        "const": {
+                            "name": "Limnology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000087"
+                        }
                     },
                     {
                         "title": "Magnetotellurics",
-                        "const": [
-                            {
-                                "name": "Magnetotellurics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000190"
-                            }
-                        ]
+                        "const": {
+                            "name": "Magnetotellurics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000190"
+                        }
                     },
                     {
                         "title": "Marine Geology",
-                        "const": [
-                            {
-                                "name": "Marine Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000065"
-                            }
-                        ]
+                        "const": {
+                            "name": "Marine Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000065"
+                        }
                     },
                     {
                         "title": "Mathematical Geophysics",
-                        "const": [
-                            {
-                                "name": "Mathematical Geophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000095"
-                            }
-                        ]
+                        "const": {
+                            "name": "Mathematical Geophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000095"
+                        }
                     },
                     {
                         "title": "Meteorology",
-                        "const": [
-                            {
-                                "name": "Meteorology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000034"
-                            }
-                        ]
+                        "const": {
+                            "name": "Meteorology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000034"
+                        }
                     },
                     {
                         "title": "Micropaleontology",
-                        "const": [
-                            {
-                                "name": "Micropaleontology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000106"
-                            }
-                        ]
+                        "const": {
+                            "name": "Micropaleontology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000106"
+                        }
                     },
                     {
                         "title": "Mineral Physics",
-                        "const": [
-                            {
-                                "name": "Mineral Physics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000096"
-                            }
-                        ]
+                        "const": {
+                            "name": "Mineral Physics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000096"
+                        }
                     },
                     {
                         "title": "Mineralogy",
-                        "const": [
-                            {
-                                "name": "Mineralogy",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000066"
-                            }
-                        ]
+                        "const": {
+                            "name": "Mineralogy",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000066"
+                        }
                     },
                     {
                         "title": "Mining Geology",
-                        "const": [
-                            {
-                                "name": "Mining Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000067"
-                            }
-                        ]
+                        "const": {
+                            "name": "Mining Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000067"
+                        }
                     },
                     {
                         "title": "Natural Sciences",
-                        "const": [
-                            {
-                                "name": "Natural Sciences",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000019"
-                            }
-                        ]
+                        "const": {
+                            "name": "Natural Sciences",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000019"
+                        }
                     },
                     {
                         "title": "Near-Surface Geophysics",
-                        "const": [
-                            {
-                                "name": "Near-Surface Geophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000097"
-                            }
-                        ]
+                        "const": {
+                            "name": "Near-Surface Geophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000097"
+                        }
                     },
                     {
                         "title": "Oceanography",
-                        "const": [
-                            {
-                                "name": "Oceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000046"
-                            }
-                        ]
+                        "const": {
+                            "name": "Oceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000046"
+                        }
                     },
                     {
                         "title": "Paleobiology",
-                        "const": [
-                            {
-                                "name": "Paleobiology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000109"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleobiology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000109"
+                        }
                     },
                     {
                         "title": "Paleobotany",
-                        "const": [
-                            {
-                                "name": "Paleobotany",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000104"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleobotany",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000104"
+                        }
                     },
                     {
                         "title": "Paleoceanography",
-                        "const": [
-                            {
-                                "name": "Paleoceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000051"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleoceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000051"
+                        }
                     },
                     {
                         "title": "Paleoclimatology",
-                        "const": [
-                            {
-                                "name": "Paleoclimatology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000043"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleoclimatology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000043"
+                        }
                     },
                     {
                         "title": "Paleoecology",
-                        "const": [
-                            {
-                                "name": "Paleoecology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000107"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleoecology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000107"
+                        }
                     },
                     {
                         "title": "Paleogeography",
-                        "const": [
-                            {
-                                "name": "Paleogeography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000044"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleogeography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000044"
+                        }
                     },
                     {
                         "title": "Paleomagnetism",
-                        "const": [
-                            {
-                                "name": "Paleomagnetism",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000098"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleomagnetism",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000098"
+                        }
                     },
                     {
                         "title": "Paleontology",
-                        "const": [
-                            {
-                                "name": "Paleontology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000101"
-                            }
-                        ]
+                        "const": {
+                            "name": "Paleontology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000101"
+                        }
                     },
                     {
                         "title": "Palynology",
-                        "const": [
-                            {
-                                "name": "Palynology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000105"
-                            }
-                        ]
+                        "const": {
+                            "name": "Palynology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000105"
+                        }
                     },
                     {
                         "title": "Pedology",
-                        "const": [
-                            {
-                                "name": "Pedology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000054"
-                            }
-                        ]
+                        "const": {
+                            "name": "Pedology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000054"
+                        }
                     },
                     {
                         "title": "Petroleum Geology",
-                        "const": [
-                            {
-                                "name": "Petroleum Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000069"
-                            }
-                        ]
+                        "const": {
+                            "name": "Petroleum Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000069"
+                        }
                     },
                     {
                         "title": "Petrology",
-                        "const": [
-                            {
-                                "name": "Petrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000070"
-                            }
-                        ]
+                        "const": {
+                            "name": "Petrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000070"
+                        }
                     },
                     {
                         "title": "Philosophy",
-                        "const": [
-                            {
-                                "name": "Philosophy",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000009"
-                            }
-                        ]
+                        "const": {
+                            "name": "Philosophy",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000009"
+                        }
                     },
                     {
                         "title": "Physical Geography",
-                        "const": [
-                            {
-                                "name": "Physical Geography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000032"
-                            }
-                        ]
+                        "const": {
+                            "name": "Physical Geography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000032"
+                        }
                     },
                     {
                         "title": "Physical Oceanography",
-                        "const": [
-                            {
-                                "name": "Physical Oceanography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000050"
-                            }
-                        ]
+                        "const": {
+                            "name": "Physical Oceanography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000050"
+                        }
                     },
                     {
                         "title": "Physics",
-                        "const": [
-                            {
-                                "name": "Physics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003318"
-                            }
-                        ]
+                        "const": {
+                            "name": "Physics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0003318"
+                        }
                     },
                     {
                         "title": "Phytogeography",
-                        "const": [
-                            {
-                                "name": "Phytogeography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000040"
-                            }
-                        ]
+                        "const": {
+                            "name": "Phytogeography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000040"
+                        }
                     },
                     {
                         "title": "Quaternary Science",
-                        "const": [
-                            {
-                                "name": "Quaternary Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000089"
-                            }
-                        ]
+                        "const": {
+                            "name": "Quaternary Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000089"
+                        }
                     },
                     {
                         "title": "Sedimentology",
-                        "const": [
-                            {
-                                "name": "Sedimentology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000071"
-                            }
-                        ]
+                        "const": {
+                            "name": "Sedimentology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000071"
+                        }
                     },
                     {
                         "title": "Seismology",
-                        "const": [
-                            {
-                                "name": "Seismology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000099"
-                            }
-                        ]
+                        "const": {
+                            "name": "Seismology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000099"
+                        }
                     },
                     {
                         "title": "Soil Science",
-                        "const": [
-                            {
-                                "name": "Soil Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000052"
-                            }
-                        ]
+                        "const": {
+                            "name": "Soil Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000052"
+                        }
                     },
                     {
                         "title": "Space Science",
-                        "const": [
-                            {
-                                "name": "Space Science",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000022"
-                            }
-                        ]
+                        "const": {
+                            "name": "Space Science",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000022"
+                        }
                     },
                     {
                         "title": "Speleology",
-                        "const": [
-                            {
-                                "name": "Speleology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000075"
-                            }
-                        ]
+                        "const": {
+                            "name": "Speleology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000075"
+                        }
                     },
                     {
                         "title": "Statistics and Probability",
-                        "const": [
-                            {
-                                "name": "Statistics and Probability",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0002269"
-                            }
-                        ]
+                        "const": {
+                            "name": "Statistics and Probability",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0002269"
+                        }
                     },
                     {
                         "title": "Stratigraphy",
-                        "const": [
-                            {
-                                "name": "Stratigraphy",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000072"
-                            }
-                        ]
+                        "const": {
+                            "name": "Stratigraphy",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000072"
+                        }
                     },
                     {
                         "title": "Structural Geology",
-                        "const": [
-                            {
-                                "name": "Structural Geology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000073"
-                            }
-                        ]
+                        "const": {
+                            "name": "Structural Geology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000073"
+                        }
                     },
                     {
                         "title": "Surface Hydrology",
-                        "const": [
-                            {
-                                "name": "Surface Hydrology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000086"
-                            }
-                        ]
+                        "const": {
+                            "name": "Surface Hydrology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000086"
+                        }
                     },
                     {
                         "title": "Tectonics",
-                        "const": [
-                            {
-                                "name": "Tectonics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000076"
-                            }
-                        ]
+                        "const": {
+                            "name": "Tectonics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000076"
+                        }
                     },
                     {
                         "title": "Tectonophysics",
-                        "const": [
-                            {
-                                "name": "Tectonophysics",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000100"
-                            }
-                        ]
+                        "const": {
+                            "name": "Tectonophysics",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000100"
+                        }
                     },
                     {
                         "title": "Vertebrate Paleontology",
-                        "const": [
-                            {
-                                "name": "Vertebrate Paleontology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000102"
-                            }
-                        ]
+                        "const": {
+                            "name": "Vertebrate Paleontology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000102"
+                        }
                     },
                     {
                         "title": "Volcanology",
-                        "const": [
-                            {
-                                "name": "Volcanology",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000074"
-                            }
-                        ]
+                        "const": {
+                            "name": "Volcanology",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000074"
+                        }
                     },
                     {
                         "title": "Zoogeography",
-                        "const": [
-                            {
-                                "name": "Zoogeography",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000041"
-                            }
-                        ]
+                        "const": {
+                            "name": "Zoogeography",
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ADO_0000041"
+                        }
                     }
                 ]
             }
@@ -1327,13 +1137,12 @@
                 "properties": {
                     "@type": {
                         "type": "string",
-                        "default": "Thing",
-                        "const": "Thing"
+                        "default": "Thing"
                     },
                     "name": {"type": "string"},
-                    "identifier": {"type": "string"},
-                    "required": ["name"]
-                }
+                    "identifier": {"type": "string"}
+                },
+                "required": ["name"]
             }
         },
         "isRelatedTo": {
@@ -1355,118 +1164,99 @@
         "mainEntity": {
             "title": "Type of Resource",
             "description": "Labeled link url is URI for ECRR resource type; name is ECRR resource type name. The ECRR URI (ECRRO_ or SFO_ prefix URIs) in the url value is used to validate resource specific properties. If the resource type is Specification or Semantic Resource, a more specific resource type from the SPKT or SRT vocabulary (respectively) can be specified.",
-            "oneOf": [
-                {
-                    "title": "Bundled Object",
-                    "const": [
-                        {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "title": "Bundled Object",
+                        "const": {
                             "name": "Bundled Object",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000075"
                         }
-                    ]
-                },
-                {
-                    "title": "Catalog/Registry",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Catalog/Registry",
+                        "const": {
                             "name": "Catalog/Registry",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000212"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000212"
                         }
-                    ]
-                },
-                {
-                    "title": "Interchange file format",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Interchange file format",
+                        "const": {
                             "name": "Interchange file format",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000208"
                         }
-                    ]
-                },
-                {
-                    "title": "Interface/API",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Interface/API",
+                        "const": {
                             "name": "Interface/API",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000207"
                         }
-                    ]
-                },
-                {
-                    "title": "Platform",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Platform",
+                        "const": {
                             "name": "Platform",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000211"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000211"
                         }
-                    ]
-                },
-                {
-                    "title": "Repository",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Repository",
+                        "const": {
                             "name": "Repository",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000209"
                         }
-                    ]
-                },
-                {
-                    "title": "Semantic Resource",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Semantic Resource",
+                        "const": {
                             "name": "Semantic Resource",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000210"
                         }
-                    ]
-                },
-                {
-                    "title": "Service Instance",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Service Instance",
+                        "const": {
                             "name": "Service Instance",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000202"
                         }
-                    ]
-                },
-                {
-                    "title": "Software",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Software",
+                        "const": {
                             "name": "Software",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000206"
                         }
-                    ]
-                },
-                {
-                    "title": "Specification",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Specification",
+                        "const": {
                             "name": "Specification",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000204"
                         }
-                    ]
-                },
-                {
-                    "title": "Use Case",
-                    "const": [
-                        {
+                    },
+                    {
+                        "title": "Use Case",
+                        "const": {
                             "name": "Use Case",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
+                            "@type": "DefinedTerm",
+                            "identifier": "http://cor.esipfed.org/ont/earthcube/ECRRO_0000005"
                         }
-                    ]
-                }
-            ]
+                    }
+                ]
+            }
         },
         "encodingFormat": {
             "title": "Representation Format or base format for a profile specification",
@@ -1482,249 +1272,284 @@
         },
         "applicationCategory": {
             "title": "Application function and subfunction",
-            "description": "strings use special syntax like {function: ... uri: ... }. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/sfo)",
+            "description": "Populate with schema:DefinedTerm. The function value is the label associated with the ECRR uri in the function vocabulary (http://cor.esipfed.org/ont/earthcube/sfo)",
             "type": "array",
             "items": {
                 "oneOf": [
-                    {"title": "research software function",
+                    {
+                        "title": "research software function",
                         "const": {
                             "name": "research software function",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000001"
                         }
                     },
-                    {"title": "research planning",
+                    {
+                        "title": "research planning",
                         "const": {
                             "name": "research planning",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000002"
                         }
                     },
-                    {"title": "user interaction",
+                    {
+                        "title": "user interaction",
                         "const": {
                             "name": "user interaction",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000003"
                         }
                     },
-                    {"title": "data acquisition",
+                    {
+                        "title": "data acquisition",
                         "const": {
                             "name": "data acquisition",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000004"
                         }
                     },
-                    {"title": "data discovery and access",
+                    {
+                        "title": "data discovery and access",
                         "const": {
                             "name": "data discovery and access",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000005"
                         }
                     },
-                    {"title": "data exploration",
+                    {
+                        "title": "data exploration",
                         "const": {
                             "name": "data exploration",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000006"
                         }
                     },
-                    {"title": "data preparation",
+                    {
+                        "title": "data preparation",
                         "const": {
                             "name": "data preparation",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000007"
                         }
                     },
-                    {"title": "data processing and modeling",
+                    {
+                        "title": "data processing and modeling",
                         "const": {
                             "name": "data processing and modeling",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000008"
                         }
                     },
-                    {"title": "workflow management",
+                    {
+                        "title": "workflow management",
                         "const": {
                             "name": "workflow management",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000009"
                         }
                     },
-                    {"title": "data analysis",
+                    {
+                        "title": "data analysis",
                         "const": {
                             "name": "data analysis",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000010"
                         }
                     },
-                    {"title": "visualization",
+                    {
+                        "title": "visualization",
                         "const": {
                             "name": "visualization",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000011"
                         }
                     },
-                    {"title": "reporting",
+                    {
+                        "title": "reporting",
                         "const": {
                             "name": "reporting",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000012"
                         }
                     },
-                    {"title": "data preservation",
+                    {
+                        "title": "data preservation",
                         "const": {
                             "name": "data preservation",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000013"
                         }
                     },
-                    {"title": "programmer assistance",
+                    {
+                        "title": "programmer assistance",
                         "const": {
                             "name": "programmer assistance",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000014"
                         }
                     },
-                    {"title": "mental modeling",
+                    {
+                        "title": "mental modeling",
                         "const": {
                             "name": "mental modeling",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000015"
                         }
                     },
-                    {"title": "project planning",
+                    {
+                        "title": "project planning",
                         "const": {
                             "name": "project planning",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000016"
                         }
                     },
-                    {"title": "logistics planning",
+                    {
+                        "title": "logistics planning",
                         "const": {
                             "name": "logistics planning",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000017"
                         }
                     },
-                    {"title": "data management planning",
+                    {
+                        "title": "data management planning",
                         "const": {
                             "name": "data management planning",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000018"
                         }
                     },
-                    {"title": "authentication and access control",
+                    {
+                        "title": "authentication and access control",
                         "const": {
                             "name": "authentication and access control",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000019"
                         }
                     },
-                    {"title": "user interface",
+                    {
+                        "title": "user interface",
                         "const": {
                             "name": "user interface",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000020"
                         }
                     },
-                    {"title": "community support & social networking",
+                    {
+                        "title": "community support & social networking",
                         "const": {
                             "name": "community support & social networking",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000021"
                         }
                     },
-                    {"title": "notification",
+                    {
+                        "title": "notification",
                         "const": {
                             "name": "notification",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000022"
                         }
                     },
-                    {"title": "instrument control",
+                    {
+                        "title": "instrument control",
                         "const": {
                             "name": "instrument control",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000023"
                         }
                     },
-                    {"title": "instrument calibration",
+                    {
+                        "title": "instrument calibration",
                         "const": {
                             "name": "instrument calibration",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000024"
                         }
                     },
-                    {"title": "streaming data handling",
+                    {
+                        "title": "streaming data handling",
                         "const": {
                             "name": "streaming data handling",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000025"
                         }
                     },
-                    {"title": "data ingest",
+                    {
+                        "title": "data ingest",
                         "const": {
                             "name": "data ingest",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000026"
                         }
                     },
-                    {"title": "data query",
+                    {
+                        "title": "data query",
                         "const": {
                             "name": "data query",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000027"
                         }
                     },
-                    {"title": "data access/order",
+                    {
+                        "title": "data access/order",
                         "const": {
                             "name": "data access/order",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000028"
                         }
                     },
-                    {"title": "web crawling",
+                    {
+                        "title": "web crawling",
                         "const": {
                             "name": "web crawling",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000029"
                         }
                     },
-                    {"title": "data harvesting",
+                    {
+                        "title": "data harvesting",
                         "const": {
                             "name": "data harvesting",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000030"
                         }
                     },
-                    {"title": "data mining",
+                    {
+                        "title": "data mining",
                         "const": {
                             "name": "data mining",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000033"
                         }
                     },
-                    {"title": "exploratory data analysis",
+                    {
+                        "title": "exploratory data analysis",
                         "const": {
                             "name": "exploratory data analysis",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000034"
                         }
                     },
-                    {"title": "QA/QC",
+                    {
+                        "title": "QA/QC",
                         "const": {
                             "name": "QA/QC",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000036"
                         }
                     },
-                    {"title": "subsetting",
+                    {
+                        "title": "subsetting",
                         "const": {
                             "name": "subsetting",
                             "@type": "DefinedTerm",
                             "identifier": "http://cor.esipfed.org/ont/earthcube/SFO_0000039"
                         }
                     },
-                    {"title": "metadata assistance",
+                    {
+                        "title": "metadata assistance",
                         "const": {
                             "name": "metadata assistance",
                             "@type": "DefinedTerm",
@@ -2042,7 +1867,7 @@
             "title": "runtime platform",
             "description": "runtime environments for the application, uses controlled vocabulary http://cor.esipfed.org/ont/earthcube/RTE. content is crude at this point, string entries in array with platform name and URI; should be DefinedTerm",
             "type": "array",
-            "items": {"type": "string"}
+            "items": {"$ref": "#/definitions/definedTerm_type"}
         },
         "programmingLanguage": {
             "title": "Programming language",
@@ -2103,8 +1928,8 @@
                 }
             }
         },
-        "$comment": "elements below here are schema.org extensions, some from other vocabularies, others defined in this schema.  These are defined inline here to work with the JSON forms user interface tools. keys that have a 'propertyID' property are mapped to ecrr defined properties implemented as additionalProperty/PropertyValue in the JSON schema for instance documents",
         "dct:conformsTo": {
+            "$comment": "elements below here are schema.org extensions, some from other vocabularies, others defined in this schema.  These are defined inline here to work with the JSON forms user interface tools. keys that have a 'propertyID' property are mapped to ecrr defined properties implemented as additionalProperty/PropertyValue in the JSON schema for instance documents",
             "title": "Conforms to",
             "description": "references to specifications that the described resource is in conformance with",
             "type": "array",
@@ -2115,7 +1940,6 @@
             "description": "suggested citation text to reference the described resource in reference lists",
             "type": "string"
         },
-
         "primaryPublication": {
             "type": "array",
             "title": "Primary publication(s)",
@@ -2143,155 +1967,148 @@
             "propertyID": "ecrro:ECRRO_0001301",
             "$ref": "#/definitions/metadataCreatorType"
         },
-
         "resourceMaturity": {
             "title": "Maturity",
             "propertyID": "ecrro:ECRRO_0000138",
             "type": "object",
             "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
-            "properties": {
-                "value": {
-                    "oneOf": [
-                        {
-                            "title": "Used in multiple places",
-                            "const": {
-                                "name": "Used in multiple places",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000001"
-                            }
-                        },
-                        {
-                            "title": "In production",
-                            "const": {
-                                "name": "In production",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000002"
-                            }
-                        },
-                        {
-                            "title": "Production ready",
-                            "const": {
-                                "name": "Production ready",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000003"
-                            }
-                        },
-                        {
-                            "title": "Beta or complete draft",
-                            "const": {
-                                "name": "Beta or complete draft",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000004"
-                            }
-                        },
-                        {
-                            "title": "Alpha or rough draft",
-                            "const": {
-                                "name": "Alpha or rough draft",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000005"
-                            }
-                        },
-                        {
-                            "title": "In development: <1 yr out",
-                            "const": {
-                                "name": "In development: <1 yr out",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000006"
-                            }
-                        },
-                        {
-                            "title": "In development: >1 yr out",
-                            "const": {
-                                "name": "In development: >1 yr out",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000007"
-                            }
-                        },
-                        {
-                            "title": "Planning",
-                            "const": {
-                                "name": "Planning",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000008"
-                            }
-                        },
-                        {
-                            "title": "Superseded",
-                            "const": {
-                                "name": "Superseded",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000009"
-                            }
-                        },
-                        {
-                            "title": "Not accessible",
-                            "const": {
-                                "name": "Not accessible",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000010"
-                            }
-                        },
-                        {
-                            "title": "Unknown",
-                            "const": {
-                                "name": "Unknown",
-                                "@type": "DefinedTerm",
-                                "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000011"
-                            }
-                        }
-                    ]
+            "oneOf": [
+                {
+                    "title": "Used in multiple places",
+                    "const": {
+                        "name": "Used in multiple places",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000001"
+                    }
+                },
+                {
+                    "title": "In production",
+                    "const": {
+                        "name": "In production",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000002"
+                    }
+                },
+                {
+                    "title": "Production ready",
+                    "const": {
+                        "name": "Production ready",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000003"
+                    }
+                },
+                {
+                    "title": "Beta or complete draft",
+                    "const": {
+                        "name": "Beta or complete draft",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000004"
+                    }
+                },
+                {
+                    "title": "Alpha or rough draft",
+                    "const": {
+                        "name": "Alpha or rough draft",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000005"
+                    }
+                },
+                {
+                    "title": "In development: <1 yr out",
+                    "const": {
+                        "name": "In development: <1 yr out",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000006"
+                    }
+                },
+                {
+                    "title": "In development: >1 yr out",
+                    "const": {
+                        "name": "In development: >1 yr out",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000007"
+                    }
+                },
+                {
+                    "title": "Planning",
+                    "const": {
+                        "name": "Planning",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000008"
+                    }
+                },
+                {
+                    "title": "Superseded",
+                    "const": {
+                        "name": "Superseded",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000009"
+                    }
+                },
+                {
+                    "title": "Not accessible",
+                    "const": {
+                        "name": "Not accessible",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000010"
+                    }
+                },
+                {
+                    "title": "Unknown",
+                    "const": {
+                        "name": "Unknown",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/MTU_0000011"
+                    }
                 }
-            }
+            ]
         },
         "expectedLifetime": {
             "type": "object",
             "propertyID": "ecrro:ECRRO_0000219",
             "description": "Expected lifetime-- how long is it anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
-            "properties": {
-                "oneOf": [
-                    {
-                        "title": "Long-term",
-                        "const": {
-                            "name": "Long-term",
-                            "@type": "DefinedTerm",
-                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000001"
-                        }
-                    },
-                    {
-                        "title": "More than 5 years",
-                        "const": {
-                            "name": "More than 5 years",
-                            "@type": "DefinedTerm",
-                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000002"
-                        }
-                    },
-                    {
-                        "title": "1 - 5 years",
-                        "const": {
-                            "name": "1 - 5 years",
-                            "@type": "DefinedTerm",
-                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000003"
-                        }
-                    },
-                    {
-                        "title": "Unknown",
-                        "const": {
-                            "name": "Unknown",
-                            "@type": "DefinedTerm",
-                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000004"
-                        }
-                    },
-                    {
-                        "title": "Not applicable",
-                        "const": {
-                            "name": "Not applicable",
-                            "@type": "DefinedTerm",
-                            "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000005"
-                        }
+            "oneOf": [
+                {
+                    "title": "Long-term",
+                    "const": {
+                        "name": "Long-term",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000001"
                     }
-                ]
-            }
+                },
+                {
+                    "title": "More than 5 years",
+                    "const": {
+                        "name": "More than 5 years",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000002"
+                    }
+                },
+                {
+                    "title": "1 - 5 years",
+                    "const": {
+                        "name": "1 - 5 years",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000003"
+                    }
+                },
+                {
+                    "title": "Unknown",
+                    "const": {
+                        "name": "Unknown",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000004"
+                    }
+                },
+                {
+                    "title": "Not applicable",
+                    "const": {
+                        "name": "Not applicable",
+                        "@type": "DefinedTerm",
+                        "identifier": "http://cor.esipfed.org/ont/earthcube/ELT_0000005"
+                    }
+                }
+            ]
         },
         "stewardship": {
             "type": "array",
@@ -2308,11 +2125,10 @@
             "items": {"$ref": "#/definitions/creativeWork_type"}
         },
         "usage": {
-            "type": "object",
             "propertyID": "ecrro:ECRRO_0000017",
             "title": "Current Usage Level",
             "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
-            "properties": {"$ref": "#/definitions/definedTerm_type"}
+            "$ref": "#/definitions/definedTerm_type"
         },
         "interfaceType": {
             "type": "array",
@@ -2618,27 +2434,7 @@
         },
         "additionalProperty_type": {
             "anyOf": [
-                {
-                    "title": "Bibliographic citation",
-                    "type": "object",
-                    "description": "suggested citation text to reference the described resource in reference lists",
-                    "properties": {
-                        "@type": {
-                            "type": "string",
-                            "default": "PropertyValue",
-                            "const": "PropertyValue"
-                        },
-                        "propertyID": {
-                            "type": "string",
-                            "default": "dct:bibliographicCitation",
-                            "const": "dct:bibliographicCitation"
-                        },
-                        "name": {"type": "string"},
-                        "value": {"type": "string"}
-                    }
-                },
-                {
-                    "title": "Primary publication",
+                {"title": "Primary publication",
                     "type": "object",
                     "description": "primary publication-- a text citation to one or more publications about the resource; separated by pipe ('|') characters",
                     "properties": {
@@ -2656,13 +2452,15 @@
                             "type": "string",
                             "default": "primary publication"
                         },
-                        "value": {"type": "string"}
+                        "value": {
+                            "type": "array",
+                            "items": {"type": "string"}
+                        }
                     }
                 },
-                {
-                    "title": "Interface type",
+                { "title": "Interface Specification",
                     "type": "object",
-                    "description": "Link to specification defining input and output file formats and information models, and protocol for requesting operations",
+                    "description": "Creative work Link to specification defining input and output file formats and information models, and protocol for requesting operations",
                     "properties": {
                         "@type": {
                             "type": "string",
@@ -2681,8 +2479,7 @@
                         }
                     }
                 },
-                {
-                    "title": "Dependencies",
+                {"title": "Dependencies",
                     "type": "object",
                     "description": "dependencies and their url",
                     "properties": {
@@ -2703,8 +2500,7 @@
                         }
                     }
                 },
-                {
-                    "title": "Resource maturity status",
+                { "title": "Resource maturity status",
                     "type": "object",
                     "description": "ECRR resource maturity status, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/MTU",
                     "properties": {
@@ -2725,8 +2521,7 @@
                         "value": {"$ref": "#/definitions/definedTerm_type"}
                     }
                 },
-                {
-                    "title": "Expected lifetime",
+                { "title": "Expected lifetime",
                     "type": "object",
                     "description": "Time duration it is anticipated that the resource will be maintained and accessible online, from controlled vocabulary http://cor.esipfed.org/ont/earthcube/ELT",
                     "properties": {
@@ -2747,8 +2542,7 @@
                         "value": {"$ref": "#/definitions/definedTerm_type"}
                     }
                 },
-                {
-                    "title": "Usage volume",
+                {"title": "Usage volume",
                     "type": "object",
                     "description": "usage volume from controlled vocabulary at http://cor.esipfed.org/ont/earthcube/UBA",
                     "properties": {
@@ -2769,7 +2563,7 @@
                         "value": {"$ref": "#/definitions/definedTerm_type"}
                     }
                 },
-                {
+                { "title": "Stewardship",
                     "type": "object",
                     "description": "stewardship: name of person or organization responsible for maintenance of the resource",
                     "properties": {
@@ -2793,7 +2587,55 @@
                         }
                     }
                 },
-                {
+                { "title": "Profile of",
+                    "type": "object",
+                    "description": "Links to base specifications that a specifcation resource profiles. Only applicable if resource type is specification.  Map key to ecrro:ECRRO_0000501 in JSON-LD context",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000501",
+                            "const": "ecrro:ECRRO_0000501"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "Profile of"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/creativeWork_type"}
+                        }
+                    }
+                },
+                { "title": "Communication Protocol(s)",
+                    "description": "communication protocol(s) used. Use ECRR controlled vocabulary",
+                    "type": "object",
+                    "properties": {
+                        "@type": {
+                            "type": "string",
+                            "default": "PropertyValue",
+                            "const": "PropertyValue"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "communication protocol"
+                        },
+                        "propertyID": {
+                            "type": "string",
+                            "default": "ecrro:ECRRO_0000502",
+                            "const": "ecrro:ECRRO_0000502"
+                        },
+                        "value": {
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/definedTerm_type"}
+                        }
+                    }
+                },
+                { "title": "Registration metadata",
                     "type": "object",
                     "description": "metadata contributor information",
                     "properties": {
