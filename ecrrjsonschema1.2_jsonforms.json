@@ -88,162 +88,20 @@
             "type": "array",
             "uniqueItems": true,
             "items": {
-                "anyOf": [
-                    {
-                        "title": "Creative Commons Attribution (CC BY)",
-                        "const": {
-                            "name": "Creative Commons Attribution (CC BY)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000001"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Attribution ShareAlike (CC BY-SA)",
-                        "const": {
-                            "name": "Creative Commons Attribution ShareAlike (CC BY-SA)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000002"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Attribution-NoDerivatives 1.0",
-                        "const": {
-                            "name": "Creative Commons Attribution-NoDerivatives 1.0",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000003"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Attribution-NonCommercial (CC BY-NC)",
-                        "const": {
-                            "name": "Creative Commons Attribution-NonCommercial (CC BY-NC)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000004"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)",
-                        "const": {
-                            "name": "Creative Commons Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000005"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Attribution-NonCommercial-NoDerivatives (CC BY-NC-ND)",
-                        "const": {
-                            "name": "Creative Commons Attribution-NonCommercial-NoDerivatives (CC BY-NC-ND)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000007"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons Public Domain",
-                        "const": {
-                            "name": "Creative Commons Public Domain",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/CCL_0000011"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons CC0 'No Rights Reserved'",
-                        "const": {
-                            "name": "Creative Commons CC0 'No Rights Reserved'",
-                            "@type": "CreativeWork",
-                            "url": "https://creativecommons.org/publicdomain/zero/1.0/"
-                        }
-                    },
-                    {
-                        "title": "Creative Commons PDM 'No Known Copyright'",
-                        "const": {
-                            "name": "Creative Commons PDM 'No Known Copyright'",
-                            "@type": "CreativeWork",
-                            "url": "http://core.esipfed.org/ont/SWL_0000014"
-                        }
-                    },
-                    {
-                        "title": "Common Development and Distribution License 1.0",
-                        "const": {
-                            "name": "Common Development and Distribution License 1.0",
-                            "@type": "CreativeWork",
-                            "url": "https://opensource.org/licenses/CDDL-1.0"
-                        }
-                    },
-                    {
-                        "title": "Eclipse Public License version 2.0",
-                        "const": {
-                            "name": "Eclipse Public License version 2.0",
-                            "@type": "CreativeWork",
-                            "url": "https://opensource.org/licenses/EPL-2.0"
-                        }
-                    },
-                    {
-                        "title": "MIT",
-                        "const": {
-                            "name": "MIT",
-                            "@type": "CreativeWork",
-                            "url": "https://opensource.org/licenses/MIT"
-                        }
-                    },
-                    {
-                        "title": "Apache",
-                        "const": {
-                            "name": "Apache",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/SWL_0000013"
-                        }
-                    },
-                    {
-                        "title": "BSD",
-                        "const": {
-                            "name": "BSD",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/SWL_0000015"
-                        }
-                    },
-                    {
-                        "title": "Mozilla Public License 2.0 (MPL-2.0)",
-                        "const": {
-                            "name": "Mozilla Public License 2.0 (MPL-2.0)",
-                            "@type": "CreativeWork",
-                            "url": "https://opensource.org/licenses/MPL-2.0"
-                        }
-                    },
-                    {
-                        "title": "GNU General Public License (GPL)",
-                        "const": {
-                            "name": "GNU General Public License (GPL)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/SWL_0000017"
-                        }
-                    },
-                    {
-                        "title": "GNU Lesser General Public License (LGPL)",
-                        "const": {
-                            "name": "GNU Lesser General Public License (LGPL)",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/SWL_0000018"
-                        }
-                    },
-                    {
-                        "title": "GNU Affero General Public License (AGPL)",
-                        "const": {
-                            "name": "GNU Affero General Public License (AGPL)",
-                            "@type": "CreativeWork",
-                            "url": "https://www.gnu.org/licenses/agpl-3.0.html"
-                        }
-                    },
-                    {
-                        "title": "Proprietary",
-                        "const": {
-                            "name": "Proprietary",
-                            "@type": "CreativeWork",
-                            "url": "http://cor.esipfed.org/ont/SWL_0000019"
-                        }
+                "type":"object",
+                "properties": {
+                    "@type":{
+                        "const":"CreativeWork"
+                        },
+                     "name": {
+                         "type":"string"
+                     },
+                     "url":{
+                         "type": "string"
+                     }
                     }
-                ]
-            }
-        },
+         }
+         },
         "version": {
             "type": "string",
             "description": "string that identifies a particular version of the resource if it is not identified by the schema:identifier element"
